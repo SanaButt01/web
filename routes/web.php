@@ -29,8 +29,8 @@ Route::get('/new', function () {
 });
 Route::post('/form',[AdminController::class,'booksave']);
 
-Route::get('/ctrl',[demoCtrl::class,'index']);
-Route::get('/about',[demoCtrl::class,'home']);
+// Route::get('/ctrl',[demoCtrl::class,'index']);
+// Route::get('/about',[demoCtrl::class,'home']);
 Route::get('/about',);
 // Route::get('/Register',[AdminController::class,'show']);
 
