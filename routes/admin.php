@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Book\BookController;
 use App\Http\Controllers\Admin\Content\ContentController;
- 
+use App\Http\Controllers\Admin\User\UserController;
 // ............Admin Auth Route................
 Route::group(['prefix' => 'admin'], function () {
     Route::get('adminRegisterForm', [RegisterController::class,'showregistrationform'])->name('admin.register');
@@ -68,7 +68,11 @@ Route::get('/contents', [PreviewController::class, 'index'])->name('previews.ind
 Route::delete('previewdestroy/{id}', 'PreviewController@destroy')->name('previews.destroy');
 Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('previews.edit');
 Route::post('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
+} );
+Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers\Admin\User'], function () {
+       Route::get('userindex', 'UserController@index')->name('admin.user.index');
+      
+              });                           
 
-                                 
-                                  } );
+       
 

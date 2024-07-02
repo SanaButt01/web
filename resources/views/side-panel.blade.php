@@ -59,12 +59,13 @@
     <br><br>
     <ul>
         <li><a href="{{ route('admin.book.create') }}"><i class="fas fa-book"></i> Add Books</a></li>
-        <li><a href="{{ route('admin.book.index') }}"><i class="fas fa-users"></i> Users</a></li>
+        <li><a href="{{ route('admin.book.index') }}"><i class="fas fa-users"></i> show books</a></li>
         <li><a href="{{ route('admin.content.create') }}"><i class="fas fa-plus-circle"></i> Add content</a></li>
         <li><a href="{{ route('admin.content.index') }}"><i class="fas fa-eye"></i> Show content</a></li>
         <li><a href="{{ route('category.index') }}"><i class="fas fa-list"></i> Show Categories</a></li>
         <li><a href="{{ route('category.create') }}"><i class="fas fa-plus"></i> Add Categories</a></li>
         <li><a href="{{ url('/Register/view') }}"><i class="fas fa-comments"></i> Feedback</a></li>
+        <li><a href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i>users</a></li>
         <li><a href="{{ url('/Register/view') }}"><i class="fas fa-link"></i> Link 3</a></li>
     </ul>
 </div>

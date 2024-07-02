@@ -41,7 +41,9 @@
                     @endforeach
                 </div>
             </td>
+           
             <td>
+            
                 <!-- Your action buttons here -->
                 <form action="{{ route('previews.destroy', $preview->preview_id) }}" method="POST">
                 <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('previews.edit', $preview->preview_id) }}'">
