@@ -108,7 +108,7 @@
                 </div>
             </div>
         </div>
-        div class="col-md-6">
+        <div class="col-md-6">
                 <div class="form-group">
                     <strong>Discount:</strong>
                     <input type="text" name="disc" class="form-control" placeholder="Discount">

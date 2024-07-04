@@ -71,7 +71,7 @@ public function store(Request $request)
         $upload = $icon->storeAs($path, $my_icon, 'public');
         $book->path = $path . '/' . $my_icon;
     }
-
+$book->disc=$request->input('disc');
     // Save the book
     $book->save();
 
@@ -123,6 +123,7 @@ public function update(Request $request, $book_id)
             $upload = $icon->storeAs($path, $my_icon, 'public');
             $book->path = $path . '/' . $my_icon;
         }
+        $book->disc=$request->input('disc');
         
         // Save the changes to the database
         $book->save();

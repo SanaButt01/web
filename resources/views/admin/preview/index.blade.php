@@ -45,8 +45,8 @@
             <td>
             
                 <!-- Your action buttons here -->
-                <form action="{{ route('previews.destroy', $preview->preview_id) }}" method="POST">
-                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('previews.edit', $preview->preview_id) }}'">
+                <form action="{{ route('previews.destroy', $preview->content_id) }}" method="POST">
+                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('admin.previews.edit', $preview->content_id) }}'">
                     <i class="fas fa-edit"></i> Edit
                 </button>
                 @csrf

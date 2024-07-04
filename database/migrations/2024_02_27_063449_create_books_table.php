@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
            $table->string('path');
            $table->string('disc')->nullable();
        
-           $table->unsignedBigInteger('category_id')->nullable();
+           $table->unsignedBigInteger('category_id');
            $table->string('author');
         
            $table->timestamps();
