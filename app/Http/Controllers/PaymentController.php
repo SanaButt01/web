@@ -11,6 +11,8 @@ class PaymentController extends Controller
     public function createPaymentIntent(Request $request)
     {
         $amount = $request->input('amount');
+        $customerName = $request->input('customerName');
+        $customerEmail = $request->input('customerEmail');
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -18,6 +20,10 @@ class PaymentController extends Controller
             $paymentIntent = PaymentIntent::create([
                 'amount' => $amount,
                 'currency' => 'pkr',
+                'receipt_email' => $customerEmail,
+                'metadata' => [
+                    'customer_name' => $customerName,
+                ],
             ]);
 
             return response()->json([
