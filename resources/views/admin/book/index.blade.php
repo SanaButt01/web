@@ -61,6 +61,8 @@
             <th>Author</th>
            <th>Category</th>
            <th>Image</th>
+             
+           <th>Price</th>
            <th>Discount</th>
           
             <th width="280px">Action</th>
@@ -75,6 +77,7 @@
     <td>
             <img src="{{ asset('storage/' . $book->path) }}" style="height: 50px; width: 50px">
         </td>
+        <td>{{ $book->price }}</td>
     <td>{{$book->disc}}
     </td>
     <td>

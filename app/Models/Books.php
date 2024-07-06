@@ -9,7 +9,7 @@ class Books extends Model
     protected $table = "books";
     protected $primaryKey = "book_id"; // Corrected attribute name
     protected $fillable = [
-        'title', 'author', 'category_id', // Add other columns as needed
+        'title', 'author', 'category_id','price'// Add other columns as needed
     ];
 
     public function category()

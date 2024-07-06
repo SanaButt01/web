@@ -19,7 +19,7 @@ class CreateContentsTable extends Migration
             $table->unsignedBigInteger('book_id')->nullable();
            $table->text('description');
           
-           $table->integer('price');
+           
             $table->timestamps();
         });
     }

@@ -61,7 +61,7 @@ class PreviewController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+ ;8    * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -74,47 +74,112 @@ class PreviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function edit($content_id)
-    {
-        $previews = Preview::where('content_id', $content_id)->get();
-        return view('admin.preview.edit', compact('content_id', 'previews'));
+{
+    $content = Content::find($content_id);
+
+    if (!$content) {
+        return redirect()->route('previews.index')->with('error', 'Content not found');
     }
-    
-    public function update(Request $request, $content_id)
+
+    $previews = Preview::where('content_id', $content_id)->get();
+    return view('admin.preview.edit', compact('content', 'content_id', 'previews'));
+}
+     public function update(Request $request, $content_id)
+     {
+         $request->validate([
+             'images' => 'required|array|min:1|max:3',
+             'images.*' => 'required|image|mimes:jpeg,png,jpg',
+         ]);
+ 
+         $existingPreviews = Preview::where('content_id', $content_id)->get();
+         foreach ($existingPreviews as $preview) {
+             Storage::disk('public')->delete($preview->path);
+             $preview->delete();
+         }
+ 
+         foreach ($request->file('images') as $image) {
+             $path = $image->store('previews', 'public');
+             Preview::create([
+                 'content_id' => $content_id,
+                 'path' => $path,
+             ]);
+         }
+ 
+         return redirect()->route('previews.index')->with('success', 'Previews updated successfully');
+     }
+     public function destroy($content_id)
+     {
+         // Retrieve the content
+         $content = Content::findOrFail($content_id);
+     
+         // Retrieve all previews associated with the content
+         $previews = Preview::where('content_id', $content_id)->get();
+     
+         // Delete each preview image and the record
+         foreach ($previews as $preview) {
+             $path = $preview->path;
+             if (Storage::disk('public')->exists($path)) {
+                 Storage::disk('public')->delete($path);
+             }
+             $preview->delete();
+         }
+     
+         // Optionally delete the content itself
+         $content->delete();
+     
+         return redirect()->route('previews.index')->with('success', 'Content and associated previews deleted successfully');
+     }
+
+    public function editImage(Request $request)
     {
-        $request->validate([
-            'images' => 'required|array|min:1|max:3',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg',
-        ]);
+        $image = Preview::where('preview_id', $request->preview_id)->firstOrFail();
+        return response()->json(['code' => 1, 'result' => $image]);
+    }
+  
+public function updateImage(Request $request, $content_id, $preview_id)
+{
+    // Validate request data if necessary
+    $request->validate([
+        'image_update' => 'required|image|mimes:jpeg,png,jpg',
+    ]);
+
+    // Find the preview image to update
+    $preview = Preview::where('content_id', $content_id)
+                      ->where('preview_id', $preview_id)
+                      ->first();
+
+    if ($preview) {
+        // Delete old image file
+        Storage::disk('public')->delete($preview->path);
+
+        // Upload new image file
+        $path = $request->file('image_update')->store('previews', 'public');
+
+        // Update path in database
+        $preview->path = $path;
+        $preview->save();
+
+        return response()->json(['code' => 1, 'message' => 'Image updated successfully']);
+    }
+
+    return response()->json(['code' => 0, 'message' => 'Image not found']);
+}
+
+    public function deleteImage(Request $request, $content_id, $preview_id)
+    {
+        $preview = Preview::where('content_id', $content_id)->where('preview_id', $preview_id)->first();
     
-        // Delete existing images
-        $existingPreviews = Preview::where('content_id', $content_id)->get();
-        foreach ($existingPreviews as $preview) {
+        if ($preview) {
             Storage::disk('public')->delete($preview->path);
             $preview->delete();
+            return response()->json(['code' => 1, 'message' => 'Image deleted successfully']);
         }
     
-        // Upload new images
-        foreach ($request->file('images') as $image) {
-            $path = $image->store('previews', 'public');
-            Preview::create([
-                'content_id' => $content_id,
-                'path' => $path,
-            ]);
-        }
-    
-        return redirect()->route('previews.index')->with('success', 'Previews updated successfully');
-    }
-    
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json(['code' => 0, 'message' => 'Image not found']);
     }
 }
+   
+
+
+

@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Book\BookController;
 use App\Http\Controllers\Admin\Content\ContentController;
- 
+use App\Http\Controllers\Admin\User\UserController;
 // ............Admin Auth Route................
 Route::group(['prefix' => 'admin'], function () {
     Route::get('adminRegisterForm', [RegisterController::class,'showregistrationform'])->name('admin.register');
@@ -66,9 +66,15 @@ Route::get('/contents/{contentId}/previews/create', [PreviewController::class, '
 Route::post('/contents/{contentId}/previews', [PreviewController::class, 'store'])->name('previews.store');
 Route::get('/contents', [PreviewController::class, 'index'])->name('previews.index');
 Route::delete('previewdestroy/{id}', 'PreviewController@destroy')->name('previews.destroy');
-Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('previews.edit');
-Route::post('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
+Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('admin.previews.edit');
+Route::put('previews/{content_id}', [PreviewController::class, 'update'])->name('admin.previews.update');
+Route::post('/admin/previews/{content_id}/{preview_id}/updateImage', [PreviewController::class, 'updateImage'])->name('previews.updateImage');
+Route::post('/admin/previews/{content_id}/{preview_id}/deleteImage', [PreviewController::class, 'deleteImage'])->name('previews.deleteImage');
+});
+Route::group(['prefix' => 'user', 'namespace' => 'App\Http\Controllers'], function () {
+       Route::get('userindex', 'UserController@index')->name('admin.user.index');
+      
+              });                           
 
-                                 
-                                  } );
+       
 

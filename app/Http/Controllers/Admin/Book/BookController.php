@@ -49,6 +49,7 @@ public function store(Request $request)
         'category_id' => 'required|exists:categories,category_id',
         'title' => 'required',
         'author' => 'required',
+        'price' => 'required',
         // Ensure the file is an image and required
     ]);
 
@@ -63,6 +64,7 @@ public function store(Request $request)
     $book->category_id = $request->input('category_id');
     $book->title = $request->input('title');
     $book->author = $request->input('author');
+    $book->price = $request->input('price');
     // Handle file upload
     if ($request->hasFile('path')) {
         $path = 'images/book';
@@ -71,7 +73,7 @@ public function store(Request $request)
         $upload = $icon->storeAs($path, $my_icon, 'public');
         $book->path = $path . '/' . $my_icon;
     }
-
+$book->disc=$request->input('disc');
     // Save the book
     $book->save();
 
@@ -102,6 +104,7 @@ public function update(Request $request, $book_id)
         'title' => 'required',
         'author' => 'required',
         'path' => 'image|required',
+        'price' => 'required',
     ]);
     
     if ($validator->fails()) {
@@ -111,6 +114,7 @@ public function update(Request $request, $book_id)
         $book->category_id = $request->input('category_id');
         $book->title = $request->input('title');
         $book->author = $request->input('author');
+        $book->price = $request->input('price');
         if ($request->hasfile('path')) {
             $path = '/' . $book->path;
             if (Storage::disk('public')->exists($path)) {
@@ -123,6 +127,7 @@ public function update(Request $request, $book_id)
             $upload = $icon->storeAs($path, $my_icon, 'public');
             $book->path = $path . '/' . $my_icon;
         }
+        $book->disc=$request->input('disc');
         
         // Save the changes to the database
         $book->save();

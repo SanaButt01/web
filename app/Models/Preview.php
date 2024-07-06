@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Preview extends Model
 {
     use HasFactory;
-
+    protected $primaryKey = 'preview_id';
     protected $fillable = ['content_id', 'path'];
     public function content()
     {
