@@ -18,6 +18,7 @@ class CreateBooksTable extends Migration
 
            $table->string('title');
            $table->string('path');
+           $table->integer('price');
            $table->string('disc')->nullable();
        
            $table->unsignedBigInteger('category_id');

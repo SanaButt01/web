@@ -49,7 +49,7 @@ class ContentController extends Controller
     $validator = Validator::make($request->all(), [
         'book_id' => 'required|exists:books,book_id',
         'description' => 'required',
-        'price' => 'required|numeric',
+    
       // Ensure the file is an image and required
     ]);
 
@@ -64,7 +64,7 @@ class ContentController extends Controller
     $content->book_id = $request->input('book_id');
    
     $content->description = $request->input('description');
-    $content->price = $request->input('price');
+   
 
     // Handle file upload
  
@@ -115,7 +115,7 @@ class ContentController extends Controller
             'book_id' => 'required|exists:books,book_id',
             
             'description' => 'required',
-            'price' => 'required|numeric',
+           
              // Ensure the file is an image and req
         ]);
         
@@ -126,7 +126,7 @@ class ContentController extends Controller
             $content->book_id = $request->input('book_id');
           ;
             $content->description = $request->input('description');
-            $content->price = $request->input('price');
+   
             
           
             

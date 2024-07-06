@@ -75,15 +75,7 @@
     </div>
 </div>
          
-            <div class="col-md-6">
-                <div class="form-group">
-                    <strong>Price:</strong>
-                    <input type="text" name="price" class="form-control" placeholder="Price">
-                    @error('price')
-                        <div class="alert alert-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
+          
             <div class="col-md-6">
                 <div class="form-group">
                     <strong>Description:</strong>

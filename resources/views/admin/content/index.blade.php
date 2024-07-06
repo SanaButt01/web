@@ -37,8 +37,7 @@
         <tr>
             <th>S.No</th>
             <th>Description</th>
-            
-            <th>Price</th>
+          
        
          
             <th width="280px">Action</th>
@@ -48,7 +47,7 @@
         <td>{{ $content->content_id }}</td>
       
         <td>{{ $content->description }}</td>
-        <td>{{ $content->price }}</td>
+       
        
       
         <td>

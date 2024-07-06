@@ -12,7 +12,7 @@ class Content extends Model
     protected $table = "contents";
     protected $primaryKey = "content_id"; // Corrected attribute name
     protected $fillable = [
-        'path', 'description', 'price','book_id'  // Add other columns as needed
+        'path', 'description','book_id'  // Add other columns as needed
     ];
     public function book()
     {
