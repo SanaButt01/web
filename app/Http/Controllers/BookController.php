@@ -22,13 +22,14 @@ class BookController extends Controller
     }
 
     public function getBookContent(Request $request, $book_id)
-    {
-        $content = Content::where('book_id', $book_id)->get();
+{
+    $content = Content::where('book_id', $book_id)->first();
 
-        if ($content->isEmpty()) {
-            return response()->json(['error' => 'No content found for the given book ID'], 404);
-        }
-
-        return response()->json($content);
+    if (!$content) {
+        return response()->json(['error' => 'No content found for the given book ID'], 404);
     }
+
+    return response()->json($content);
+}
+
 }
