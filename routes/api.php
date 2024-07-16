@@ -7,6 +7,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\PreviewController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +30,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
 Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
 Route::get('/books', [BookController::class, 'getBooksByCategory']);
 Route::get('/books/{book_id}/content', [BookController::class, 'getBookContent']);
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
+Route::post('/orders', [OrderController::class, 'store']);
+Route::post('/feedbacks', [FeedbackController::class, 'store']);
+Route::get('/previews/{content_id}', [PreviewController::class, 'show']);

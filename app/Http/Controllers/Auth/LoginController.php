@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider; // Add this import
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,14 +13,13 @@ class LoginController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    // Override the login method to handle API login
     public function login(Request $request)
     {
         // Validate the request
@@ -36,6 +35,10 @@ class LoginController extends Controller
         // Attempt to log the user in
         if (Auth::attempt($request->only('email', 'password'))) {
             $user = Auth::user();
+            
+            // Create session
+            // $request->session()->regenerate();
+            
             return response()->json([
                 'user' => $user,
                 'message' => 'Login successful',
@@ -45,10 +48,14 @@ class LoginController extends Controller
         return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
-    // Optionally, override the logout method to handle API logout
     public function logout(Request $request)
     {
         Auth::logout();
+        
+        // Invalidate session
+        // $request->session()->invalidate();
+        
         return response()->json(['message' => 'Logout successful'], 200);
     }
+    
 }

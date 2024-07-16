@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -13,8 +12,6 @@ use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     use RegistersUsers;
-
-    protected $redirectTo = RouteServiceProvider::HOME;
 
     public function __construct()
     {
@@ -27,15 +24,21 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust max file size as needed
         ]);
     }
 
     protected function create(array $data)
     {
+        // Upload and store the image
+        $iconPath = $data['icon']->storeAs('public/profiles', $data['name'] . '_' . time() . '.' . $data['icon']->getClientOriginalExtension());
+        $iconPath = str_replace('public/', '', $iconPath); // Remove 'public/' from path for storage
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'icon' => $iconPath, // Store the image path in 'icon' column
         ]);
     }
 
