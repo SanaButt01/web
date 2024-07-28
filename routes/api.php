@@ -2,16 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController as UserRegisterController;
+use App\Http\Controllers\Auth\LoginController as UserLoginController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PreviewController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('register', [RegisterController::class, 'register']);
-Route::post('login', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout']);
+Route::post('register', [UserRegisterController::class, 'register']);
+Route::post('login', [UserLoginController::class, 'login']);
+Route::post('logout', [UserLoginController::class, 'logout']);
 Route::post('/create-payment-intent', [PaymentController::class, 'createPaymentIntent']);
 Route::get('/books', [BookController::class, 'getBooksByCategory']);
 Route::get('/books/{book_id}/content', [BookController::class, 'getBookContent']);

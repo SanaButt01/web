@@ -42,7 +42,7 @@
     }
 
     /* Media query for small screens */
-    @media screen and (max-width: 768px) {
+    @media  screen and (max-width: 768px) {
         .side-panel ul {
             display: none; /* Hide the list */
         }
@@ -53,20 +53,20 @@
 </style>
 
 <div class="side-panel">
-    <a class="navbar-brand pt-0" href="{{ route('home') }}">
-        <img src="{{ asset('argon') }}/img/brand/logo2.png" class="navbar-brand-img" alt="..." style="width: 150px; height: 150px;">
+    <a class="navbar-brand pt-0" href="<?php echo e(route('home')); ?>">
+        <img src="<?php echo e(asset('argon')); ?>/img/brand/logo2.png" class="navbar-brand-img" alt="..." style="width: 150px; height: 150px;">
     </a>
     <br><br>
     <ul>
-        <li><a href="{{ route('admin.book.create') }}"><i class="fas fa-book"></i> Add Books</a></li>
-        <li><a href="{{ route('admin.book.index') }}"><i class="fas fa-users"></i> show books</a></li>
-        <li><a href="{{ route('admin.content.create') }}"><i class="fas fa-plus-circle"></i> Add content</a></li>
-        <li><a href="{{ route('admin.content.index') }}"><i class="fas fa-eye"></i> Show content</a></li>
-        <li><a href="{{ route('category.index') }}"><i class="fas fa-list"></i> Show Categories</a></li>
-        <li><a href="{{ route('previews.index') }}"><i class="fas fa-plus"></i>previews</a></li>
-        <li><a href="{{ url('/Register/view') }}"><i class="fas fa-comments"></i> Feedback</a></li>
-       <li><a href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i>users</a></li>
-        <li><a href="{{ url('/Register/view') }}"><i class="fas fa-link"></i> Link 3</a></li>
+        <li><a href="<?php echo e(route('admin.book.create')); ?>"><i class="fas fa-book"></i> Add Books</a></li>
+        <li><a href="<?php echo e(route('admin.book.index')); ?>"><i class="fas fa-users"></i> show books</a></li>
+        <li><a href="<?php echo e(route('admin.content.create')); ?>"><i class="fas fa-plus-circle"></i> Add content</a></li>
+        <li><a href="<?php echo e(route('admin.content.index')); ?>"><i class="fas fa-eye"></i> Show content</a></li>
+        <li><a href="<?php echo e(route('category.index')); ?>"><i class="fas fa-list"></i> Show Categories</a></li>
+        <li><a href="<?php echo e(route('previews.index')); ?>"><i class="fas fa-plus"></i>previews</a></li>
+        <li><a href="<?php echo e(url('/Register/view')); ?>"><i class="fas fa-comments"></i> Feedback</a></li>
+       <li><a href="<?php echo e(route('admin.user.index')); ?>"><i class="fas fa-users"></i>users</a></li>
+        <li><a href="<?php echo e(url('/Register/view')); ?>"><i class="fas fa-link"></i> Link 3</a></li>
     </ul>
 </div>
 
@@ -79,3 +79,4 @@
         panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
     }
 </script>
+<?php /**PATH C:\Users\sanan\Documents\bookscity\resources\views/side-panel.blade.php ENDPATH**/ ?>
