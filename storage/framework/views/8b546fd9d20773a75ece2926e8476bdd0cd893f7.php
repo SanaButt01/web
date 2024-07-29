@@ -61,7 +61,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 mb-4">
-                <h2>Edit Admin</h2>
+                <h2>Update Profile</h2>
             </div>
         </div>
 
