@@ -2,17 +2,13 @@
 
 namespace App\Widgets;
 
-use App\Model\Category;
-use App\Model\Content;
-use App\Model\Course;
-
-use App\Model\User;
-
 use Arrilot\Widgets\AbstractWidget;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-
-class dashboardwidgets extends AbstractWidget
+use App\Models\Category;
+use App\Models\Content;
+use App\Models\Books;
+use App\Models\Feedback;
+use Illuminate\Support\Facades\DB; // Add this line to import the DB facade
+class DashboardWidgets extends AbstractWidget
 {
     /**
      * The configuration array.
@@ -26,25 +22,40 @@ class dashboardwidgets extends AbstractWidget
      * Return view() or other content to display.
      */
     public function run()
-
     {
         $categories = Category::count();
-        $courses = Course::count();
+        
         $contents = Content::count();
-        $users = DB::table('users')->count();
-      
-
+$books=Books::count();
+$feedbacks=Feedback::count();
+  $users = DB::table('users')->count();
         return view('widgets.dashboardwidgets', [
             'config' => $this->config,
-            'courses' => $courses,
-          
-            'contents' => $contents,
-           
-            'users' => $users,
-           
+              'users' => $users,
+              'books'=>$books,
+              'feedbacks'=>$feedbacks,
             'categories' => $categories,
-            
-
+            'contents' => $contents,
         ]);
-    }
+        //
+ // Your widget logic here
+//  $categories = Category::count();
+
+//  $contents = Content::count();
+
+ 
+//  return view('widgets.dashboardwidgets', [
+//      'config' => $this->config,
+    
+//      'contents' => $contents,
+     
+//    
+ 
+//      'categories' => $categories,
+     
+
+//  ]);
+}
+
+
 }

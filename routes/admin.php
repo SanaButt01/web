@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Book\BookController;
 use App\Http\Controllers\Admin\Content\ContentController;
-use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\UserController;
 
 // Admin Auth Routes
 Route::group(['prefix' => 'admin'], function () {

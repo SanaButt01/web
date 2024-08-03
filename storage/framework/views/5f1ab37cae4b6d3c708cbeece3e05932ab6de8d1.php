@@ -1,18 +1,17 @@
-<head>   <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>"></head>
+<head>
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/animate.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/chartist.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/date-picker.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/owlcarousel.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/timepicker.css')); ?>">
-<link rel="stylesheet" href="<?php echo e(asset('css/weather-icon.css')); ?>"></head>
-<!-- resources/views/layout/headers/cards.blade.php -->
+    <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/chartist.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/date-picker.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/owlcarousel.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/timepicker.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/weather-icon.css')); ?>">
+</head>
 
-
-<div class="header  pb-8 pt-5 pt-md-8">
+<div class="header pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
-            <!-- Card stats -->
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
                     <div class="card card-stats mb-4 mb-xl-0">
@@ -20,7 +19,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Categories</h5>
-                                    <span class="h2 font-weight-bold mb-0"></span>
+                                    <span class="h2 font-weight-bold mb-0"><?php echo e($categories); ?></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -28,7 +27,6 @@
                                     </div>
                                 </div>
                             </div>
-                          
                         </div>
                     </div>
                 </div>
@@ -38,7 +36,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Books</h5>
-                                    <span class="h2 font-weight-bold mb-0">2,356</span>
+                                    <span class="h2 font-weight-bold mb-0"><?php echo e($books); ?></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -46,7 +44,6 @@
                                     </div>
                                 </div>
                             </div>
-                           
                         </div>
                     </div>
                 </div>
@@ -56,7 +53,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h5 class="card-title text-uppercase text-muted mb-0">Feedbacks</h5>
-                                    <span class="h2 font-weight-bold mb-0">924</span>
+                                    <span class="h2 font-weight-bold mb-0"><?php echo e($feedbacks); ?></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -76,8 +73,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                                    <span class="h2 font-weight-bold mb-0">49,65%</span>
+                                    <h5 class="card-title text-uppercase text-muted mb-0">Users</h5>
+                                    <span class="h2 font-weight-bold mb-0"><?php echo e($users); ?></span>
                                 </div>
                                 <div class="col-auto">
                                     <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -95,4 +92,7 @@
             </div>
         </div>
     </div>
-</div><?php /**PATH F:\bookscity\resources\views/layouts/headers/cards.blade.php ENDPATH**/ ?>
+</div>
+
+
+<?php /**PATH F:\bookscity\resources\views/widgets/dashboardwidgets.blade.php ENDPATH**/ ?>
