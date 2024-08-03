@@ -95,4 +95,14 @@
 </div>
 
 
+<!-- resources/views/widgets/top_users_widget.blade.php -->
+
+<div class="widget">
+    <h3>Top 5 Users</h3>
+    <ul>
+        <?php $__currentLoopData = $topUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <li><?php echo e($user->name); ?> (<?php echo e($user->email); ?>)</li>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    </ul>
+</div>
 <?php /**PATH F:\bookscity\resources\views/widgets/dashboardwidgets.blade.php ENDPATH**/ ?>

@@ -95,3 +95,14 @@
 </div>
 
 
+
+<!-- resources/views/widgets/top_users_widget.blade.php -->
+
+<div class="widget">
+    <h3>Top 5 Users</h3>
+    <ul>
+        @foreach($topUsers as $user)
+            <li>{{ $user->name }} ({{ $user->email }})</li>
+        @endforeach
+    </ul>
+</div>
