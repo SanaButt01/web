@@ -33,7 +33,7 @@ class RegisterController extends Controller
         // Upload and store the image
         $iconPath = $data['icon']->storeAs('public/profiles', $data['name'] . '_' . time() . '.' . $data['icon']->getClientOriginalExtension());
         $iconPath = str_replace('public/', '', $iconPath); // Remove 'public/' from path for storage
-
+    
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -41,6 +41,7 @@ class RegisterController extends Controller
             'icon' => $iconPath, // Store the image path in 'icon' column
         ]);
     }
+    
 
     public function register(Request $request)
     {

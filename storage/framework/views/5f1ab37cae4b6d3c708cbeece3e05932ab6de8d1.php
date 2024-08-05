@@ -18,6 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Admin Panel</title>
     
+    <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;
@@ -160,8 +161,8 @@
                                                     <td><?php echo e($loop->iteration); ?></td>
                                                     <td><?php echo e($user->name); ?></td>
                                                     <td><?php echo e($user->email); ?></td>
-                                                    <td><?php echo e($user->icon); ?></td>
-                                                </tr>
+                                                 <td>   <img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon">
+    </td></tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>

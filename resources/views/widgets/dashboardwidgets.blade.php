@@ -18,6 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Admin Panel</title>
     
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <style>
         body {
             background-color: #f8f9fa;
@@ -160,8 +161,8 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td>{{ $user->icon }}</td>
-                                                </tr>
+                                                 <td>   <img src="{{ asset('storage/' . $user->icon) }}" alt="User Icon">
+    </td></tr>
                                             @endforeach
                                         </tbody>
                                     </table>

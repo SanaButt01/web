@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Add Books</title>
 
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <style>
+  
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+   <style>
         .sidebar {
             position: fixed;
             top: 0;
@@ -69,6 +71,12 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name}}</td>
                     <td>{{ $user->email}}</td>
+                   
+                    <!-- Assuming you have a $user object passed to the view -->
+
+<td>
+                        <img src="{{asset('storage/'.$user->icon)}}" style="height: 50px; width: 50px">
+                    </td>
                 </tr>
                 @endforeach
             </table>
