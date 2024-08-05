@@ -32,33 +32,30 @@
         .form-group {
             margin-bottom: 20px; /* Added margin between form groups */
         }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 200px; /* Adjust width as needed */
-            background-color: #f8f9fa; /* Sidebar background color */
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+         
         .main-content {
-            margin-left: 220px; /* Adjust according to sidebar width */
-            margin-top: 20px; /* Add top margin */
+            margin-left: 220px;
+            margin-top: 20px;
             padding: 20px;
-            background-color: #ffffff; /* Change shade of white */
+            transition: margin-left .3s;
+            padding: 20px;
+            background-color: #ffffff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-    </style>
+        
+
+        .main-content.fullscreen {
+            margin-left: 0;
+        }
+         </style>
 </head>
 <body>
-<div class="sidebar">
-    @include('side-panel')
-</div>
 
-<div class="main-content">
+    @include('side-panel')
+
+
+<div class="main-content"id="main-content">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 mb-4">

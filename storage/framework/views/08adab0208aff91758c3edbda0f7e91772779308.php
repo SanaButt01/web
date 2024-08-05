@@ -8,24 +8,22 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 200px;
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      
+        
         .main-content {
             margin-left: 220px;
             margin-top: 20px;
             padding: 20px;
+            transition: margin-left .3s;
+            padding: 20px;
             background-color: #ffffff;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .main-content.fullscreen {
+            margin-left: 0;
         }
         body {
             background-color: #f8f9fa;
@@ -38,10 +36,10 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    
         <?php echo $__env->make('side-panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    </div>
-    <div class="main-content">
+
+    <div class="main-content"id="main-content">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 margin-tb">
