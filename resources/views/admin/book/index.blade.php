@@ -38,10 +38,10 @@
         @include('side-panel')
 
     <div class="main-content"id="main-content">
-        <div class="container">
+        <div class="container"style="margin-top:40px">
             <div class="row">
                 <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
+                    <div class="pull -left">
                         <h2>All Books</h2>
                     </div>
                     <div class="pull-right mb-2">

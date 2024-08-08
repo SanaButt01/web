@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/date-picker.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/owlcarousel.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/chartist.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/prism.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/timepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/weather-icon.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Additional Stylesheets (Keep only the necessary ones) -->
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+
+    <!-- Scripts (Ensure versions match) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <title>Admin Panel</title>
     
     <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+    
     <style>
         body {
             background-color: #f8f9fa;
@@ -29,7 +30,6 @@
             color: #000000; /* Black text */
         }
         .card-header {
-            
             color: #ffffff; /* White text in header */
         }
         .icon-shape {
@@ -161,8 +161,8 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                 <td>   <img src="{{ asset('storage/' . $user->icon) }}" alt="User Icon">
-    </td></tr>
+                                                    <td><img src="{{ asset('storage/' . $user->icon) }}" alt="User Icon"></td>
+                                                </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -205,7 +205,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 </body>

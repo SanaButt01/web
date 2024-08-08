@@ -1,8 +1,14 @@
+<head>
+<style>
+.custom-margin-left {
+    margin-left: 450px; /* Adjust the value as needed */
+}
+</style>
+</head>
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block" href="<?php echo e(route('home')); ?>"><?php echo e(__('Dashboard')); ?></a>
-
+        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="<?php echo e(route('home')); ?>"><?php echo e(__('Dashboard')); ?></a>
         <!-- Toggle button -->
         <button class="navbar-toggler" type="button" onclick="toggleSidePanel()" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
