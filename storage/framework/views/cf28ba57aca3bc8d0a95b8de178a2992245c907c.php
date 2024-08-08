@@ -3,8 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Category Form</title>
+    
+    <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+            .main-content {
+            margin-left: 220px;
+            margin-top: 20px;
+            padding: 20px;
+            transition: margin-left .3s;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+
+        .main-content.fullscreen {
+            margin-left: 0;
+        }
         body {
             background-color: #f8f9fa;
         }
@@ -36,7 +53,7 @@
 </head>
 <body>
 
-<div class="container mt-2">
+<div class="container mt-2"id="main-content">
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
