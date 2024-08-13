@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('/form', function () {
   return view('form');
 });
+Route::get('/wid', function () {
+	return view('widgets.dashboard_widgets');
+  });
 Route::get('/new', function () {
   return view('new');
 });

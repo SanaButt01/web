@@ -5,10 +5,12 @@ use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Preview\PreviewController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Order\OrderController;
+use App\Http\Controllers\Admin\Feedback\FeedbackController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Book\BookController;
 use App\Http\Controllers\Admin\Content\ContentController;
-use App\Http\Controllers\Admin\User\UserController;
+use App\Http\Controllers\UserController;
 
 // Admin Auth Routes
 Route::group(['prefix' => 'admin'], function () {
@@ -45,7 +47,17 @@ Route::put('adminupdate/{id}', [AdminController::class, 'update'])->name('admin.
         Route::post('store', [BookController::class, 'store'])->name('book.store');
         Route::put('update/{book_id}', [BookController::class, 'update'])->name('book.update');
     });
-
+    Route::group(['prefix' => 'order'], function () {
+   
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::post('/statuscreate', [OrderController::class, 'storeStatus'])->name('status.create');
+        Route::get('/status', [OrderController::class, 'edit'])->name('orders.status');
+    });
+    Route::group(['prefix' => 'feedback'], function () {
+   
+        Route::get('/feedbacks', [FeedbackController::class, 'index'])->name('feedbacks.index');
+      
+    });
     // Content Routes
     Route::group(['prefix' => 'content'], function () {
         Route::get('create', [ContentController::class, 'create'])->name('admin.content.create');
