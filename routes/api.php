@@ -37,3 +37,4 @@ Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::post('/feedbacks', [FeedbackController::class, 'store']);
 Route::get('/previews/{content_id}', [PreviewController::class, 'show']);
+Route::get('/books/search', [BookController::class, 'searchBooks']);
