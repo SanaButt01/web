@@ -36,4 +36,5 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{id}', [CategoryController::class, 'show']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::post('/feedbacks', [FeedbackController::class, 'store']);
+Route::get('/allfeedbacks', [FeedbackController::class, 'index']);
 Route::get('/previews/{content_id}', [PreviewController::class, 'show']);

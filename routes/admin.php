@@ -67,15 +67,17 @@ Route::put('adminupdate/{id}', [AdminController::class, 'update'])->name('admin.
         Route::post('store', [ContentController::class, 'store'])->name('content.store');
         Route::put('update/{book}', [ContentController::class, 'update'])->name('content.update');
     });
-
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Http\Controllers\Admin\Preview', 'middleware' => 'auth:admin'], function () {
-    Route::get('/contents/{contentId}/previews/create', [PreviewController::class, 'create'])->name('previews.create');
-    Route::post('/contents/{contentId}/previews', [PreviewController::class, 'store'])->name('previews.store');
-    Route::get('/contents', [PreviewController::class, 'index'])->name('previews.index');
-    Route::delete('previewdestroy/{id}', [PreviewController::class, 'destroy'])->name('previews.destroy');
-    Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('previews.edit');
-    Route::post('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
-});
+    Route::group(['prefix'=>'preview'], function () {
+        Route::get('/contents/{contentId}/previews/create', [PreviewController::class, 'create'])->name('previews.create');
+        Route::post('/contents/{contentId}/previews', [PreviewController::class, 'store'])->name('previews.store');
+        Route::get('/contents', [PreviewController::class, 'index'])->name('previews.index');
+        Route::delete('previews/{id}', [PreviewController::class, 'destroy'])->name('previews.destroy');
+        Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('previews.edit');
+        Route::post('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
+        Route::post('previews/{content_id}/editImage/{preview_id}', [PreviewController::class, 'updateImage'])->name('previews.updateImage');
+        Route::post('previews/{content_id}/deleteImage/{preview_id}', [PreviewController::class, 'deleteImage'])->name('previews.deleteImage');
+    });
+    
 
 
     // User Routes

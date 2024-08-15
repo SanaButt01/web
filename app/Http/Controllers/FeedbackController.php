@@ -23,4 +23,12 @@ class FeedbackController extends Controller
 
         return response()->json(['feedback' => $feedback, 'message' => 'Feedback submitted successfully'], 201);
     }
+    public function index(Request $request)
+    {
+        // Fetch all feedbacks
+        $feedbacks = Feedback::all();
+
+        // Return the feedbacks as a JSON response
+        return response()->json($feedbacks);
+    }
 }

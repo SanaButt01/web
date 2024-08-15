@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
 
     <!-- Additional Stylesheets (Keep only the necessary ones) -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
     
 
     <!-- Scripts (Ensure versions match) -->
@@ -21,7 +21,7 @@
 
     <title>Admin Panel</title>
     
-    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     
     <style>
         body {
@@ -70,7 +70,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-folder"></i> Categories</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ $categories }}</span>
+                                        <span class="h2 font-weight-bold mb-0"><?php echo e($categories); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -87,7 +87,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-book"></i> Books</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ $books }}</span>
+                                        <span class="h2 font-weight-bold mb-0"><?php echo e($books); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -104,7 +104,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-comments"></i> Feedbacks</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ $feedbacks }}</span>
+                                        <span class="h2 font-weight-bold mb-0"><?php echo e($feedbacks); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -125,7 +125,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-users"></i> Users</h5>
-                                        <span class="h2 font-weight-bold mb-0">{{ $users }}</span>
+                                        <span class="h2 font-weight-bold mb-0"><?php echo e($users); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -159,14 +159,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($topUsers as $user)
+                                            <?php $__currentLoopData = $topUsers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->email }}</td>
-                                                    <td><img src="{{ asset('storage/' . $user->icon) }}" alt="User Icon" style="height:40px ;width: 40px"></td>
+                                                    <td><?php echo e($loop->iteration); ?></td>
+                                                    <td><?php echo e($user->name); ?></td>
+                                                    <td><?php echo e($user->email); ?></td>
+                                                    <td><img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon" style="height:40px ;width: 40px"></td>
                                                 </tr>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -193,12 +193,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($categoriesWithBookCount as $category)
+                                        <?php $__currentLoopData = $categoriesWithBookCount; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td class="icon-book"><i class="fas fa-book"></i> {{ $category->type }}</td>
-                                                <td>{{ $category->books_count }}</td>
+                                                <td class="icon-book"><i class="fas fa-book"></i> <?php echo e($category->type); ?></td>
+                                                <td><?php echo e($category->books_count); ?></td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -212,3 +212,4 @@
 
 </body>
 </html>
+<?php /**PATH F:\web\bookscity\resources\views/widgets/dashboardwidgets.blade.php ENDPATH**/ ?>

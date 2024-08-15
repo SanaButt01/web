@@ -31,39 +31,40 @@
             <th>Images</th>
             <th width="280px">Action</th>
         </tr>
-        @foreach ($previews as $content_id => $previewGroup)
+        <?php $__currentLoopData = $previews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $content_id => $previewGroup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <tr>
-            <td>{{ $content_id }}</td>
+            <td><?php echo e($content_id); ?></td>
             <td>
                 <div class="image-row">
-                    @foreach ($previewGroup as $preview)
-                    <img src="{{ asset('storage/' . $preview->path) }}" alt="Image">
-                    @endforeach
+                    <?php $__currentLoopData = $previewGroup; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $preview): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <img src="<?php echo e(asset('storage/' . $preview->path)); ?>" alt="Image">
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </td>
            
             <td>
-            <form action="{{ url('Preview/previewdestroy/'.$preview->content_id) }}" method="POST">
+            <form action="<?php echo e(url('Preview/previewdestroy/'.$preview->content_id)); ?>" method="POST">
 
-                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('previews.edit', $preview->content_id) }}'">
+                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('previews.edit', $preview->content_id)); ?>'">
     <i class="fas fa-edit"></i> Edit
 </button>
 
-                    @csrf
-                    @method('DELETE')
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('DELETE'); ?>
                     <button type="submit" class="btn btn-danger action-btn">
                         <i class="fas fa-trash"></i> Delete
                     </button>
                 </form>
             </td>
         </tr>
-        @endforeach
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </table>
 </div>
-@if ($message = Session::get('success'))
+<?php if($message = Session::get('success')): ?>
     <div class="alert" style="background-color:#F96D41;color:white">
-        <p>{{ $message }}</p>
+        <p><?php echo e($message); ?></p>
     </div>
-@endif
+<?php endif; ?>
 </body>
 </html>
+<?php /**PATH F:\web\bookscity\resources\views/admin/preview/index.blade.php ENDPATH**/ ?>
