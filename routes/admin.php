@@ -73,12 +73,11 @@ Route::put('adminupdate/{id}', [AdminController::class, 'update'])->name('admin.
         Route::get('/contents', [PreviewController::class, 'index'])->name('previews.index');
         Route::delete('previews/{id}', [PreviewController::class, 'destroy'])->name('previews.destroy');
         Route::get('previews/{content_id}/edit', [PreviewController::class, 'edit'])->name('previews.edit');
-        Route::post('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
+        Route::put('previews/{content_id}', [PreviewController::class, 'update'])->name('previews.update');
         Route::post('previews/{content_id}/editImage/{preview_id}', [PreviewController::class, 'updateImage'])->name('previews.updateImage');
         Route::post('previews/{content_id}/deleteImage/{preview_id}', [PreviewController::class, 'deleteImage'])->name('previews.deleteImage');
     });
     
-
 
     // User Routes
     Route::group(['prefix' => 'user'], function () {

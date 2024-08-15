@@ -35,10 +35,18 @@
                         <i class="ni ni-single-02"></i>
                         <span><?php echo e(__('My profile')); ?></span>
                     </a>
+<<<<<<< HEAD:storage/framework/views/be91cf48d58ec4b5dcecddef0a62a7852358c884.php
+                  
+=======
+>>>>>>> refs/remotes/origin/main:storage/framework/views/9187e195a4c28ec5312580256b5947da57d46bf0.php
                     <a href="<?php echo e(route('admin.edit', ['admin' => $admin->id])); ?>" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span><?php echo e(__('Update profile')); ?></span>
                     </a>
+<<<<<<< HEAD:storage/framework/views/be91cf48d58ec4b5dcecddef0a62a7852358c884.php
+                      
+=======
+>>>>>>> refs/remotes/origin/main:storage/framework/views/9187e195a4c28ec5312580256b5947da57d46bf0.php
                     <div class="dropdown-divider"></div>
                     <a href="<?php echo e(route('logout')); ?>" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
@@ -49,5 +57,9 @@
             </li>
         </ul>
     </div>
+<<<<<<< HEAD:storage/framework/views/be91cf48d58ec4b5dcecddef0a62a7852358c884.php
+</nav><?php /**PATH D:\sana_project\web\resources\views/layouts/navbars/navs/auth.blade.php ENDPATH**/ ?>
+=======
 </nav>
 <?php /**PATH C:\Users\sanan\Documents\bookscity\resources\views/layouts/navbars/navs/auth.blade.php ENDPATH**/ ?>
+>>>>>>> refs/remotes/origin/main:storage/framework/views/9187e195a4c28ec5312580256b5947da57d46bf0.php

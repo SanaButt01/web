@@ -36,4 +36,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH C:\Users\sanan\Documents\bookscity\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions/views/minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\sana_project\web\vendor\laravel\framework\src\Illuminate\Foundation\Exceptions/views/minimal.blade.php ENDPATH**/ ?>

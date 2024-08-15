@@ -38,3 +38,4 @@ Route::post('/orders', [OrderController::class, 'store']);
 Route::post('/feedbacks', [FeedbackController::class, 'store']);
 Route::get('/allfeedbacks', [FeedbackController::class, 'index']);
 Route::get('/previews/{content_id}', [PreviewController::class, 'show']);
+Route::get('/books/search', [BookController::class, 'searchBooks']);

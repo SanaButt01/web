@@ -22,14 +22,31 @@ class BookController extends Controller
     }
 
     public function getBookContent(Request $request, $book_id)
-{
-    $content = Content::where('book_id', $book_id)->first();
+    {
+        $content = Content::where('book_id', $book_id)->first();
 
-    if (!$content) {
-        return response()->json(['error' => 'No content found for the given book ID'], 404);
+        if (!$content) {
+            return response()->json(['error' => 'No content found for the given book ID'], 404);
+        }
+
+        return response()->json($content);
     }
 
-    return response()->json($content);
-}
+    // Add this method for searching books by name
+    public function searchBooks(Request $request)
+    {
+        $query = $request->query('title');
 
+        if (!$query) {
+            return response()->json(['error' => 'Title query is required'], 400);
+        }
+
+        $books = Books::where('title', 'LIKE', '%' . $query . '%')->get();
+
+        if ($books->isEmpty()) {
+            return response()->json(['message' => 'No books found'], 404);
+        }
+
+        return response()->json($books);
+    }
 }

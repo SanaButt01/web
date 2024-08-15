@@ -106,4 +106,4 @@
         }
     }
 </script>
-<?php /**PATH C:\Users\sanan\Documents\bookscity\resources\views/side-panel.blade.php ENDPATH**/ ?>
+<?php /**PATH D:\sana_project\web\resources\views/side-panel.blade.php ENDPATH**/ ?>
