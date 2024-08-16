@@ -10,9 +10,7 @@
     <!-- Additional Stylesheets (Keep only the necessary ones) -->
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
-    
+    <link rel="stylesheet" href="<?php echo e(asset('css/chartist.css')); ?>">
 
     <!-- Scripts (Ensure versions match) -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -141,6 +139,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Top 5 Users Section -->
                 <div class="row mt-4">
                     <div class="col-xl-12 col-lg-12">
                         <div class="card mb-4 shadow-sm">
@@ -164,7 +164,7 @@
                                                     <td><?php echo e($loop->iteration); ?></td>
                                                     <td><?php echo e($user->name); ?></td>
                                                     <td><?php echo e($user->email); ?></td>
-                                                    <td><img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon" style="height:40px ;width: 40px"></td>
+                                                    <td><img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon" style="height:40px; width:40px;"></td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -174,6 +174,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Book Count by Category & Order Status -->
                 <div class="row mt-5">
                     <div class="col-xl-8 mb-5 mb-xl-0">
                         <div class="card shadow">
@@ -204,6 +206,40 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Order Status -->
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="status-widget">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-9">
+                                            <h5>Order Status</h5>
+                                        </div>
+                                        <div class="col-3 text-sm-right"><i class="text-muted" data-feather="shopping-bag"></i></div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="status-details">
+                                        <div class="row">
+                                            <div class="col-6 text-center"><span>Complete</span>
+                                                <h4 class="mb-0"><span class="counter"><?php echo e($deliveredPercentage); ?></span>%</h4>
+                                            </div>
+                                            <div class="col-6 text-center"><span>Cancel</span>
+                                                <h4 class="mb-0"><span class="counter"><?php echo e($totalOrders); ?></span>%</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="status-chart bg-secondary">
+                                    <div class="chart-container">
+                                        <div class="flot-chart-placeholder" id="order-graph"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Order Status -->
                 </div>
             </div>
         </div>
