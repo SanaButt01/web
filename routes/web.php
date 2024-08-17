@@ -21,16 +21,16 @@ Route::get('/', function () {
   return view('admin.auth.login');
 }
 );
-Route::get('/form', function () {
-  return view('form');
-});
-Route::get('/wid', function () {
-	return view('widgets.dashboard_widgets');
-  });
-Route::get('/new', function () {
-  return view('new');
-});
-Route::post('/form',[AdminController::class,'booksave']);
+// Route::get('/form', function () {
+//   return view('form');
+// });
+// Route::get('/wid', function () {
+// 	return view('widgets.dashboard_widgets');
+//   });
+// Route::get('/new', function () {
+//   return view('new');
+// });
+// Route::post('/form',[AdminController::class,'booksave']);
 
 // Route::get('/ctrl',[demoCtrl::class,'index']);
 // Route::get('/about',[demoCtrl::class,'home']);
@@ -61,21 +61,20 @@ Route::get('/about',);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', function () {
-  return view('admin.auth.login');
-});Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', function () {
+//   return view('admin.auth.login');
+// });Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
-	 Route::get('map', function () {return view('pages.maps');})->name('map');
-	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
-	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-});
-
+// Route::group(['middleware' => 'auth'], function () {
+// 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
+// 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+// 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
+// 	Route::get('upgrade', function () {return view('pages.upgrade');})->name('upgrade'); 
+// 	 Route::get('map', function () {return view('pages.maps');})->name('map');
+// 	 Route::get('icons', function () {return view('pages.icons');})->name('icons'); 
+// 	 Route::get('table-list', function () {return view('pages.tables');})->name('table');
+// 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+// });

@@ -52,31 +52,36 @@
     }
 
     .toggle-btn {
-        position: fixed;
-        top: 20px;
-        left: 260px; /* Adjust according to sidebar width */
-        z-index: 1000;
-        background-color: #333;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: left 0.3s ease;
-    }
+    position: fixed; /* Fixed position relative to the viewport */
+    top: 20px; /* Distance from the top of the viewport */
+    left: 260px; /* Adjust according to sidebar width */
+    z-index: 1000; /* Ensures the button stays above other content */
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: left 0.3s ease;
+}
 
-    .toggle-btn.hidden {
-        left: 10px; /* Adjust position when side panel is hidden */
-    }
+/* Optional: Adjust position when the side panel is hidden */
+.toggle-btn.hidden {
+    left: 10px;
+}
+
 </style>
 
 <div class="side-panel" id="side-panel">
-    <a class="navbar-brand pt-0" href="<?php echo e(route('home')); ?>">
+    <a class="navbar-brand pt-0" href="#">
         <img src="<?php echo e(asset('argon')); ?>/img/brand/logo2.png" class="navbar-brand-img" alt="..." style="width: 150px; height: 150px;">
     </a>
    <ul>
-    
-             <li><a href="<?php echo e(route('admin.book.index')); ?>"><i class="fas fa-book"></i> Show Books</a></li>
+
+   
+   <li><a href="<?php echo e(route('admin.dashboard')); ?>"><i class="fas fa-columns"></i> Dashboard</a></li>
+
+                       <li><a href="<?php echo e(route('admin.book.index')); ?>"><i class="fas fa-book"></i> Show Books</a></li>
         <li><a href="<?php echo e(route('admin.content.create')); ?>"><i class="fas fa-plus-circle"></i> Add Content</a></li>
         <li><a href="<?php echo e(route('admin.content.index')); ?>"><i class="fas fa-eye"></i> Show Content</a></li>
         <li><a href="<?php echo e(route('category.index')); ?>"><i class="fas fa-list"></i> Show Categories</a></li>

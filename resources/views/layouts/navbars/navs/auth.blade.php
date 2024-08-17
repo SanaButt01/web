@@ -8,11 +8,11 @@
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="#">{{ __('Dashboard') }}</a>
         <!-- Toggle button -->
-        <button class="navbar-toggler" type="button" onclick="toggleSidePanel()" aria-label="Toggle navigation">
+        <!-- <button class="navbar-toggler" type="button" onclick="toggleSidePanel()" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> -->
 
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -31,19 +31,22 @@
                     <div class="dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                    <a href="#" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
                     <a href="{{ route('admin.edit', ['admin' => $admin->id]) }}" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Update profile') }}</span>
-                    </a>
+                    </a>                        
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                    <a href="{{ route('admin.logout') }}" class="dropdown-item" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         <i class="ni ni-user-run"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Logout') }}</span>  <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
                     </a>
                 </div>
             </li>

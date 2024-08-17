@@ -66,10 +66,11 @@ class LoginController extends Controller
             }
         }
     }
-    public function loggedOut(Request $request)
+  
+
+    public function logout(Request $request)
     {
+        auth('admin')->logout();
         return redirect(route('admin.login'));
     }
 }
-
-

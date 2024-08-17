@@ -126,8 +126,7 @@ class PreviewController extends Controller
          }
      
          // Optionally delete the content itself
-         $content->delete();
-     
+        
          return redirect()->route('previews.index')->with('success', 'Content and associated previews deleted successfully');
      }
 

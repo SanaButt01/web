@@ -43,16 +43,17 @@
             </td>
            
             <td>
-            <form action="{{ url('Preview/previewdestroy/'.$preview->content_id) }}" method="POST">
+          
 
                 <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('previews.edit', $preview->content_id) }}'">
     <i class="fas fa-edit"></i> Edit
 </button>
-
+  <!-- Delete Button -->
+  <form action="{{ route('previews.destroy', $content_id) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger action-btn">
-                        <i class="fas fa-trash"></i> Delete
+                    <button type="submit" class="btn btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this preview?');">
+                        <i class="fas fa-trash-alt"></i> Delete
                     </button>
                 </form>
             </td>
