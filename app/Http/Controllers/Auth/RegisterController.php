@@ -24,15 +24,19 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust max file size as needed
+            'icon' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust max file size as needed
         ]);
     }
 
     protected function create(array $data)
     {
-        // Upload and store the image
-        $iconPath = $data['icon']->storeAs('public/profiles', $data['name'] . '_' . time() . '.' . $data['icon']->getClientOriginalExtension());
-        $iconPath = str_replace('public/', '', $iconPath); // Remove 'public/' from path for storage
+        $iconPath = null;
+        
+        if (isset($data['icon'])) {
+            // Upload and store the image
+            $iconPath = $data['icon']->storeAs('public/profiles', $data['name'] . '_' . time() . '.' . $data['icon']->getClientOriginalExtension());
+            $iconPath = str_replace('public/', '', $iconPath); // Remove 'public/' from path for storage
+        }
     
         return User::create([
             'name' => $data['name'],
@@ -41,18 +45,17 @@ class RegisterController extends Controller
             'icon' => $iconPath, // Store the image path in 'icon' column
         ]);
     }
-    
 
     public function register(Request $request)
-    {
-        $validator = $this->validator($request->all());
+{
+    $validator = $this->validator($request->all());
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $user = $this->create($request->all());
-
-        return response()->json(['user' => $user], 201);
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
     }
+
+    $user = $this->create($request->all());
+
+    return response()->json(['user' => $user], 201);
+}
 }

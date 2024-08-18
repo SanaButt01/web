@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\PreviewController;
+use App\Http\Controllers\PasswordResetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +40,9 @@ Route::post('/feedbacks', [FeedbackController::class, 'store']);
 Route::get('/allfeedbacks', [FeedbackController::class, 'index']);
 Route::get('/previews/{content_id}', [PreviewController::class, 'show']);
 Route::get('/books/search', [BookController::class, 'searchBooks']);
+Route::prefix('password-reset')->group(function () {
+    Route::post('/request-code', [PasswordResetController::class, 'sendResetCode']);
+    Route::post('/verify-code', [PasswordResetController::class, 'verifyResetCode']);
+    Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
+});
+
