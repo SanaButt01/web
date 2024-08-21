@@ -3,34 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
+   
     <style>
        
-        body {
-            background-color: #f8f9fa;
-        }
-        .action-btn {
-            width: 100px;
-            display: inline-block;
-            text-align: center;
-        }
-        .main-content {
-            margin-left: 220px;
-            margin-top: 20px;
-            padding: 20px;
-            transition: margin-left .3s;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-
-        .main-content.fullscreen {
-            margin-left: 0;
-        }
+       
     </style>
 </head>
 <body>
@@ -39,6 +20,9 @@
 
     <div class="main-content"id="main-content">
         <div class="container">
+        <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
@@ -87,3 +71,20 @@
     </div>
 </body>
 </html>
+<script>
+        function toggleSidePanel() {
+            var panel = document.getElementById('side-panel');
+            var mainContent = document.getElementById('main-content');
+            var toggleBtn = document.getElementById('toggle-btn');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                mainContent.classList.remove('expanded');
+                toggleBtn.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+                mainContent.classList.add('expanded');
+                toggleBtn.classList.add('hidden');
+            }
+        }
+    </script>

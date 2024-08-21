@@ -1,18 +1,33 @@
 <head>
 <style>
 .custom-margin-left {
-    margin-left: 450px; /* Adjust the value as needed */
+    margin-left: 50px; /* Adjust the value as needed */
+}
+.toggle-btn-navbar {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 15px; /* Adjust spacing as needed */
+}
+
+.toggle-btn-navbar i {
+    font-size: 18px; /* Icon size */
 }
 </style>
 </head>
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
     <div class="container-fluid">
+       
+        <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
+            <i class="fas fa-bars"></i>
+        </button>
         <!-- Brand -->
-        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="#">{{ __('Dashboard') }}</a>
+        <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="{{route('admin.dashboard')}}">{{ __('Dashboard') }}</a>
         <!-- Toggle button -->
-        <!-- <button class="navbar-toggler" type="button" onclick="toggleSidePanel()" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
+        
 
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
@@ -53,3 +68,20 @@
         </ul>
     </div>
 </nav>
+<script>
+    function toggleSidePanel() {
+        var panel = document.getElementById('side-panel');
+        var mainContent = document.getElementById('main-content');
+        var toggleBtn = document.getElementById('toggle-btn');
+        
+        if (panel.classList.contains('hidden')) {
+            panel.classList.remove('hidden');
+            mainContent.classList.remove('expanded');
+            toggleBtn.classList.remove('hidden');
+        } else {
+            panel.classList.add('hidden');
+            mainContent.classList.add('expanded');
+            toggleBtn.classList.add('hidden');
+        }
+    }
+</script>

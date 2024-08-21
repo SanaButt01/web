@@ -29,7 +29,7 @@ $categories = Category::all();
 return view('admin.book.create', compact('categories'));
 }
 public function index(Request $request)
-{
+{$admin = auth()->user(); // Assuming the authenticated user is the admin
     $categories = Category::all();
     $category_id = $request->input('category_id');
 
@@ -39,7 +39,7 @@ public function index(Request $request)
         $books = Books::with('category')->get();
     }
 
-    return view('admin.book.index', compact('books', 'categories', 'category_id'));
+    return view('admin.book.index', compact('books', 'categories', 'category_id','admin'));
 }
 
 public function store(Request $request)

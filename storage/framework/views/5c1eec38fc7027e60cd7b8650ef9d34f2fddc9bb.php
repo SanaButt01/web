@@ -222,10 +222,10 @@
                                 <div class="card-body">
                                     <div class="status-details">
                                         <div class="row">
-                                            <div class="col-6 text-center"><span>Complete</span>
+                                            <div class="col-6 text-center"><span>Delivered</span>
                                                 <h4 class="mb-0"><span class="counter"><?php echo e($deliveredPercentage); ?></span>%</h4>
                                             </div>
-                                            <div class="col-6 text-center"><span>Cancel</span>
+                                            <div class="col-6 text-center"><span>Total</span>
                                                 <h4 class="mb-0"><span class="counter"><?php echo e($totalOrders); ?></span>%</h4>
                                             </div>
                                         </div>
