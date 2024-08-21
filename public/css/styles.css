@@ -1,0 +1,64 @@
+/* public/css/styles.css */
+.main-content {
+    margin-left: 220px;
+    margin-top: 20px;
+    padding: 20px;
+    transition: margin-left .3s;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-content.fullscreen {
+    margin-left: 0;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+h2 {
+    color: #F96D41;
+}
+.btn-back {
+    background-color: #F96D41;
+    color: #fff;
+    height: 40px;
+    line-height: 20px;
+    padding: 6px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.btn-back:hover {
+    background-color: #E75731;
+}
+.form-control {
+    height: 40px;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.action-btn {
+    width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+.toggle-btn-navbar {
+background-color: #333;
+color: #fff;
+border: none;
+padding: 5px 10px;
+border-radius: 5px;
+cursor: pointer;
+margin-right: 15px; /* Adjust spacing as needed */
+}
+
+.toggle-btn-navbar i {
+font-size: 18px; /* Icon size */
+}
+img {
+    margin-top: 5px;
+}
+/* styles.css */
+
+

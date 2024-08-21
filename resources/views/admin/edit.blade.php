@@ -1,65 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Edit Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Edit Admin</title>
+<link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
+
+   
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        h2 {
-            color: #F96D41;
-        }
-        .btn-back {
-            background-color: #F96D41;
-            color: #fff;
-            height: 40px;
-            line-height: 20px;
-            padding: 6px 15px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .btn-back:hover {
-            background-color: #E75731;
-        }
-        .form-control {
-            height: 40px;
-        }
-        .form-group {
-            margin-bottom: 20px; /* Added margin between form groups */
-        }
-        .sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 200px; /* Adjust width as needed */
-            background-color: #f8f9fa; /* Sidebar background color */
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .main-content {
-            margin-left: 220px; /* Adjust according to sidebar width */
-            margin-top: 20px; /* Add top margin */
-            padding: 20px;
-            background-color: #ffffff; /* Change shade of white */
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+      
     </style>
 </head>
 <body>
-<div class="sidebar">
-    @include('side-panel')
-</div>
+@include('side-panel')
 
-<div class="main-content">
+<div class="main-content" id="main-content">
     <div class="container">
-        <div class="row">
+    <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="row">
             <div class="col-lg-12 mb-4">
                 <h2>Update Profile</h2>
             </div>
@@ -89,7 +51,8 @@
                     <div class="form-group">
                         <strong>Email:</strong>
                         <div class="input-group">
-                            <div class="input-group-prepend"><span class="input-group-text"><i class="icofont icofont-envelope"></i></span></div>
+                            <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i>
+                            </i></span></div>
                             <input type="email" name="email" value="{{ $admin->email }}" class="form-control" placeholder="Email" readonly>
                         </div>
                     </div>
@@ -116,3 +79,22 @@
 </div>
 </body>
 </html>
+
+<script>
+    function toggleSidePanel() {
+        var panel = document.getElementById('side-panel');
+        var mainContent = document.getElementById('main-content');
+        var toggleBtn = document.getElementById('toggle-btn');
+        
+        if (panel.classList.contains('hidden')) {
+            panel.classList.remove('hidden');
+            mainContent.classList.remove('expanded');
+            toggleBtn.classList.remove('hidden');
+        } else {
+            panel.classList.add('hidden');
+            mainContent.classList.add('expanded');
+            toggleBtn.classList.add('hidden');
+        }
+    }
+</script>
+

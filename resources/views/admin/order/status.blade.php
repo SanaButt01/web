@@ -3,45 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit  Status</title>
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
           
-          .main-content {
-            margin-left: 220px;
-            margin-top: 20px;
-            padding: 20px;
-            transition: margin-left .3s;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-
-        .main-content.fullscreen {
-            margin-left: 0;
-        }
-        body {
-            background-color: #f8f9fa;
-        }
-      
-        h2 {
-            color: #F96D41;
-        }
-        .btn {
-            background-color: #F96D41;
-            color: #fff;
-            border: none;
-        }
-        .btn:hover {
-            background-color: #E75731;
-        }
-        .form-control {
-            height: 40px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
+          
     </style>
 </head>
 <body>
@@ -50,6 +19,10 @@
     
     <div class="main-content"id="main-content">
         <div class="container">
+        <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
+                <i class="fas fa-bars"></i>
+            </button>
+      
             <div class="row">
                 <div class="col-lg-12 mb-4">
                     <h2>Edit Order Status</h2>
@@ -67,7 +40,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="email">Email:</label>
+                            <strong>Email:</strong>
                             <select name="email" class="form-control">
                                 @foreach($orders as $order)
                                     <option value="{{ $order->email }}" style="color:blue">{{ $order->email }}</option>
@@ -77,7 +50,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="status">Order Status:</label>
+                            <strong>Order Status:</strong>
                             <input type="text" name="status" class="form-control" placeholder="Order Status">
                         </div>
                     </div>
@@ -87,10 +60,27 @@
 
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <a class="btn btn-back" href="{{ route('admin.dashboard') }}">Back</a>
+                    <a class="btn btn-back" href="{{ route('orders.index') }}">Back</a>
                 </div>
             </div>
         </div>
     </div>
 </body>
 </html>
+<script>
+        function toggleSidePanel() {
+            var panel = document.getElementById('side-panel');
+            var mainContent = document.getElementById('main-content');
+            var toggleBtn = document.getElementById('toggle-btn');
+            
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                mainContent.classList.remove('expanded');
+                toggleBtn.classList.remove('hidden');
+            } else {
+                panel.classList.add('hidden');
+                mainContent.classList.add('expanded');
+                toggleBtn.classList.add('hidden');
+            }
+        }
+    </script>

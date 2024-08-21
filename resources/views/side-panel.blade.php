@@ -91,10 +91,10 @@
         <li><a href="{{ route('orders.index') }}"><i class="fas fa-link"></i> Orders</a></li>
     </ul>
 </div>
+<!-- 
+<button class="toggle-btn" id="toggle-btn" onclick="toggleSidePanel()"><i class="fas fa-bars"></i></button> -->
 
-<button class="toggle-btn" id="toggle-btn" onclick="toggleSidePanel()"><i class="fas fa-bars"></i></button>
-
-<script>
+<!-- <script>
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');
         var mainContent = document.getElementById('main-content');
@@ -110,4 +110,4 @@
             toggleBtn.classList.add('hidden');
         }
     }
-</script>
+</script> -->
