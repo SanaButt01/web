@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit  Status</title>
+    <title>Add  Status</title>
     <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -25,7 +25,7 @@
       
             <div class="row">
                 <div class="col-lg-12 mb-4">
-                    <h2>Edit Order Status</h2>
+                    <h2>Add Status</h2>
                 </div>
             </div>
 
@@ -35,7 +35,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('status.create') }}" method="POST">
+            <form action="{{ route('status.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-md-6">
@@ -49,12 +49,16 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <strong>Order Status:</strong>
-                            <input type="text" name="status" class="form-control" placeholder="Order Status">
-                        </div>
-                    </div>
-                </div>
+    <div class="form-group">
+        <strong>Order Status:</strong>
+        <select name="status" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Delivered">Delivered</option>
+        </select>
+    </div>
+</div>
+
+
                 <button type="submit" class="btn btn-back form-control">Submit</button>
             </form>
 

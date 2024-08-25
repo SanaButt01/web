@@ -69,7 +69,10 @@
         </div>
     </div>
 
-    <script>
+</body>
+</html>
+
+<script>
         function toggleSidePanel() {
             var panel = document.getElementById('side-panel');
             var mainContent = document.getElementById('main-content');
@@ -85,7 +88,4 @@
                 toggleBtn.classList.add('hidden');
             }
         }
-    </script>
-</body>
-</html>
-<?php /**PATH F:\web\bookscity\resources\views/admin/category/index.blade.php ENDPATH**/ ?>
+    </script><?php /**PATH F:\web\bookscity\resources\views/admin/category/index.blade.php ENDPATH**/ ?>

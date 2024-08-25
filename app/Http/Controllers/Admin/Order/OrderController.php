@@ -16,7 +16,7 @@ class OrderController extends Controller
         $orders = Order::latest()->get();
         return view('admin.order.index', compact('orders'));
     }
-    public function edit()
+    public function create()
     {
         // return response()->json($request->toArray());
         $orders = Order::latest()->get();
@@ -46,12 +46,36 @@ class OrderController extends Controller
         // Redirect back with a success message
         return redirect()->back()->with('status', 'Order status updated successfully.');
     }
-
-
-    public function show(Category $category)
+    public function edit($id)
     {
-        //
+        $order = Order::find($id);
+       
+    
+        return view('admin.order.edit', compact('order'));
     }
+    
+public function update(Request $request, $id)
+{
+    $validator = Validator::make($request->all(), [
+        
+        'status' => 'required|in:Pending,Delivered',
+    ]);
+    
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    } else {
+        $order = Order::find($id); // Changed variable name to $book
+     
+        $order->status = $request->input('status');
+       
+         
+        // Save the changes to the database
+        $order->save();
+        
+        // Redirect with success message
+        return redirect(route('orders.index'))->with('success', 'Order has been updated successfully.');
+    }
+}
 
 
     
