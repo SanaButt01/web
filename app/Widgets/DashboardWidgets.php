@@ -24,8 +24,8 @@ class DashboardWidgets extends AbstractWidget
         $users = DB::table('users')->count();
 
     $totalOrders = Order::count();
-    $deliveredOrders = Order::where('status', 'delivered')->count();
-    $pendingOrders = Order::where('status', 'pending')->count();
+    $deliveredOrders = Order::where('status', 'Delivered')->count();
+    $pendingOrders = Order::where('status', 'Pending')->count();
     $deliveredPercentage = $totalOrders > 0 ? ($deliveredOrders / $totalOrders) * 100 : 0;
     $pendingPercentage = $totalOrders > 0 ? ($pendingOrders / $totalOrders) * 100 : 0;
 

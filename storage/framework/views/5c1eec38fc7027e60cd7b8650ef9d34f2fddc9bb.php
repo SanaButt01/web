@@ -7,72 +7,148 @@
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="<?php echo e(asset('css/app.css')); ?>">
 
-    <!-- Additional Stylesheets (Keep only the necessary ones) -->
+    <!-- Additional Stylesheets -->
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/font-awesome.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/chartist.css')); ?>">
 
-    <!-- Scripts (Ensure versions match) -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
     <title>Admin Panel</title>
-    
+
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
-    
+
     <style>
+  
         body {
-            background-color: #f8f9fa;
+            background-color: #f5f5f5;
+            font-family: 'Arial', sans-serif;
         }
         .card {
-            background-color: #ffffff; /* White background for cards */
-            border: 1px solid #e0e0e0; /* Light gray border */
-            color: #000000; /* Black text */
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .card-header {
-            color: #ffffff; /* White text in header */
+            background-color: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            border-radius: 12px 12px 0 0;
+            padding: 20px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .card-body {
+            padding: 20px;
+            background-color: #ffffff;
         }
         .icon-shape {
-            background-color: #000000; /* Black icon background */
-            color: #ffffff; /* White icons */
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 28px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .table thead th {
-            background-color: #f8f9fa; /* Light gray for table header */
-            color: #000000; /* Black text */
+        .bg-danger { background-color: #e57373; }
+        .bg-warning { background-color: #fbc02d; }
+        .bg-success { background-color: #4caf50; }
+        .bg-info { background-color: #03a9f4; }
+        .text-muted { color: #9e9e9e; }
+        .text-success { color: #388e3c; }
+        .text-warning { color: #f57f17; }
+        .text-info { color: #0288d1; }
+        .icon-book i {
+            font-size: 22px;
+        }
+        .card-stats {
+            background: linear-gradient(135deg, #ff8a80 0%, #ff6d00 100%);
+            color: #ffffff;
+        }
+        .card-stats .card-body {
+            padding: 20px;
+        }
+        .status-widget .card {
+            background: linear-gradient(135deg, #a5d6a7 0%, #66bb6a 100%);
+            color: #ffffff;
+        }
+        .status-widget .status-chart {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 12px 12px;
+            padding: 20px;
+        }
+        .status-details {
+            padding: 20px;
+        }
+        .status-details h4 {
+            font-weight: bold;
+        }
+        .table th {
+            background-color: #F96D41;
+            color: #ffffff;
+            font-weight: bold;
         }
         .table tbody tr:nth-child(even) {
-            background-color: #f1f1f1; /* Light gray for alternate rows */
+            background-color: #f1f1f1;
         }
-        .header {
-            margin-bottom: 30px;
+        .table tbody tr:hover {
+            background-color: #e0e0e0;
         }
-        .icon-book {
-            color: #000000;
+        .table img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
         }
-        .icon-book i {
-            margin-right: 5px;
-        }
+        .icon-shape {
+    font-size: 20px; /* Adjust size as needed */
+    margin-right: 50px;
+    color: #333; /* Adjust color as needed */
+}
+.icon-book {
+    font-size: 20px; /* Adjust size as needed */
+    margin-right: 140px;
+    color: #333; /* Adjust color as needed */
+}
     </style>
 </head>
 <body>
+   
 
 <div class="container-fluid">
+
     <div class="header pb-8 pt-5 pt-md-8">
+  
         <div class="container-fluid">
+     
             <div class="header-body">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6">
-                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm">
+                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm card-stats">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-folder"></i> Categories</h5>
+                                        <h5 class="card-title text-uppercase text-muted mb-0"><i class="fas fa-list"></i> Categories</h5>
                                         <span class="h2 font-weight-bold mb-0"><?php echo e($categories); ?></span>
                                     </div>
                                     <div class="col-auto">
                                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                            <i class="fas fa-folder"></i>
+                                            <i class="fas fa-list"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +156,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-6">
-                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm">
+                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm card-stats">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -97,7 +173,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-6">
-                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm">
+                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm card-stats">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -105,7 +181,7 @@
                                         <span class="h2 font-weight-bold mb-0"><?php echo e($feedbacks); ?></span>
                                     </div>
                                     <div class="col-auto">
-                                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                        <div class="icon icon-shape bg-success text-white rounded-circle shadow">
                                             <i class="fas fa-comments"></i>
                                         </div>
                                     </div>
@@ -118,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-6">
-                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm">
+                        <div class="card card-stats mb-4 mb-xl-0 shadow-sm card-stats">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
@@ -164,7 +240,7 @@
                                                     <td><?php echo e($loop->iteration); ?></td>
                                                     <td><?php echo e($user->name); ?></td>
                                                     <td><?php echo e($user->email); ?></td>
-                                                    <td><img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon" style="height:40px; width:40px;"></td>
+                                                    <td><img src="<?php echo e($user->icon_url); ?>" alt="User Icon"></td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
@@ -178,67 +254,64 @@
                 <!-- Book Count by Category & Order Status -->
                 <div class="row mt-5">
                     <div class="col-xl-8 mb-5 mb-xl-0">
-                        <div class="card shadow">
-                            <div class="card-header border-0">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h3 class="mb-0">Book Count by Category</h3>
-                                    </div>
-                                </div>
+                        <div class="card shadow-sm">
+                            <div class="card-header">
+                                <h3 class="mb-0"><i class="fas fa-tags icon-book icon-shape"></i> Book Count by Category</h3>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">Books Count</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php $__currentLoopData = $categoriesWithBookCount; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
                                             <tr>
-                                                <td class="icon-book"><i class="fas fa-book"></i> <?php echo e($category->type); ?></td>
-                                                <td><?php echo e($category->books_count); ?></td>
+                                                <th>Category</th>
+                                                <th>Books Count</th>
                                             </tr>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php $__currentLoopData = $categoriesWithBookCount; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <tr>
+                                                    <td class="icon-book"><i class="fas fa-book"></i> <?php echo e($category->type); ?></td>
+                                                    <td><?php echo e($category->books_count); ?></td>
+                                                </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Order Status -->
                     <div class="col-xl-4 col-lg-12">
-                        <div class="status-widget">
-                            <div class="card">
-                                <div class="card-header">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h5>Order Status</h5>
-                                        </div>
-                                        <div class="col-3 text-sm-right"><i class="text-muted" data-feather="shopping-bag"></i></div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="status-details">
-                                        <div class="row">
-                                            <div class="col-6 text-center"><span>Delivered</span>
-                                                <h4 class="mb-0"><span class="counter"><?php echo e($deliveredPercentage); ?></span>%</h4>
-                                            </div>
-                                            <div class="col-6 text-center"><span>Total</span>
-                                                <h4 class="mb-0"><span class="counter"><?php echo e($totalOrders); ?></span>%</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="status-chart bg-secondary">
-                                    <div class="chart-container">
-                                        <div class="flot-chart-placeholder" id="order-graph"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5><i class="fas fa-shopping-bag icon-shape"></i> Order Status</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span style="background-color: #F96D41; color: #ffffff; padding: 5px 10px; border-radius: 4px;">Delivered</span></td>
+                            <td><h4 class="mb-0"><span class="counter"><?php echo e($deliveredPercentage); ?></span>%</h4></td>
+                        </tr>
+                        <tr>
+                            <td><span style="background-color: #F96D41; color: #ffffff; padding: 5px 10px; border-radius: 4px;">Pending</span></td>
+                            <td><h4 class="mb-0"><span class="counter"><?php echo e($pendingPercentage); ?></span>%</h4></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
                     <!-- End Order Status -->
                 </div>
             </div>

@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Admin Panel</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
     <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
-   <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <style>
         .card {
             border: none;
             border-radius: 10px;
@@ -19,6 +19,8 @@
         .card-header {
             border-radius: 10px 10px 0 0;
             background-color: transparent;
+          
+            font-weight: 700;
             color: #000510;
         }
 
@@ -29,11 +31,16 @@
 
         .form-label {
             font-weight: 500;
-            color: #333; /* Change label color */
+            color: #333;
         }
 
         .form-control {
-            background-color: #f5f5f5; /* Change form control background color */
+            background-color: #f5f5f5;
+        }
+
+        .input-group-text {
+            background-color: #f5f5f5;
+            border: none;
         }
 
         .btn-primary {
@@ -48,27 +55,25 @@
         }
 
         .btn-primary:focus {
-            box-shadow: none; /* Remove button focus shadow */
+            box-shadow: none;
         }
 
         .form-check-label {
-            color: #333; /* Change form check label color */
+            color: #333;
         }
 
         .btn-link {
-            color: #000510; /* Change link color */
+            color: #000510;
         }
 
         .btn-link:hover {
-            color: #e75731; /* Change link hover color */
+            color: #e75731;
         }
 
         .navbar-brand img {
-            max-height: 50px; /* Adjust the logo height as needed */
+            max-height: 50px;
         }
-    
 
-        /* Your existing styles */
         .container-fluid {
             background-image: url('images/back.jpg');
             background-size: cover;
@@ -78,7 +83,6 @@
             background-color: rgba(249, 249, 249, 0.8);
         }
 
-        /* Neatly align form in responsive way */
         @media (max-width: 768px) {
             .col-md-6 {
                 max-width: 100%;
@@ -87,15 +91,12 @@
     </style>
 </head>
 <body>
-
-
+    
 
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
-    
     <div class="col-md-6">
         <div class="card">
-            <div class="card-header text-center" style="font-size:40px">{{ __('ADMIN LOGIN') }}
-        </a></div>
+            <div class="card-header text-center" style="font-size:40px">{{ __('ADMIN LOGIN') }}</div>
 
             <div class="card-body">
                 <form method="POST" action="{{ route('admin.submit.login') }}">
@@ -103,7 +104,12 @@
 
                     <div class="form-group">
                         <label for="email" class="form-label">{{ __('Email Address') }}</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        </div>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -113,7 +119,12 @@
 
                     <div class="form-group">
                         <label for="password" class="form-label">{{ __('Password') }}</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        </div>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -121,28 +132,13 @@
                         @enderror
                     </div>
 
-                    <div class="form-group form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
-                    </div>
                     <a class="btn btn-link" href="{{ route('admin.register') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                    
+                        {{ __('Forgot Your Password?') }}
+                    </a>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>
                     </div>
-
-                    @if (Route::has('password.request'))
-                        <div class="text-center">
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                {{ __('Forgot Your Password?') }}
-                            </a>
-                           
-                        </div>
-                    @endif
                 </form>
             </div>
         </div>
