@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -56,6 +57,13 @@ class RegisterController extends Controller
 
     $user = $this->create($request->all());
 
+    // Send the email
+    Mail::raw('Welcome to our platform, ' . $user->name . '!', function ($message) use ($user) {
+        $message->to($user->email)
+                ->subject('Welcome to Our Platform');
+    });
+
     return response()->json(['user' => $user], 201);
 }
+
 }
