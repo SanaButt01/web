@@ -49,6 +49,7 @@
                     <th>Phone no</th>
                     <th>Product</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 @foreach ($orders as $order)
                 <tr>
@@ -64,6 +65,10 @@
                         @endif
                     </td>
                     <td>{{ $order->status }}</td>
+                    <td>
+                    <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('status.edit', $order->id) }}'">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button></td>
                 </tr>
                 @endforeach
             </table>

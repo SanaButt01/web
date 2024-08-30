@@ -50,8 +50,11 @@ Route::put('adminupdate/{id}', [AdminController::class, 'update'])->name('admin.
     Route::group(['prefix' => 'order'], function () {
    
         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-        Route::post('/statuscreate', [OrderController::class, 'storeStatus'])->name('status.create');
-        Route::get('/status', [OrderController::class, 'edit'])->name('orders.status');
+        Route::post('/statuscreate', [OrderController::class, 'storeStatus'])->name('status.store');
+        Route::get('/status', [OrderController::class, 'create'])->name('orders.status');
+
+        Route::get('edit/{id}', [OrderController::class, 'edit'])->name('status.edit');
+        Route::put('update/{id}', [OrderController::class, 'update'])->name('status.update');
     });
     Route::group(['prefix' => 'feedback'], function () {
    

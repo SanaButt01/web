@@ -1,6 +1,5 @@
 <!-- Include Font Awesome CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-eUHtv4g/lz9O9CDnpbFBsl3wWVYBdI1F2uhKp8buqojQDfj/Z2xt6Zr8viV+a2zr" crossorigin="anonymous">
-
 <style>
     .side-panel {
         position: fixed;
@@ -28,6 +27,12 @@
 
     .side-panel ul li {
         margin-bottom: 10px;
+        transition: background-color 0.3s, transform 0.3s; /* Transition for background color and scaling */
+    }
+
+    .side-panel ul li:hover {
+        background-color: #f0f0f0; /* Change background color on hover */
+        transform: scale(1.02); /* Slightly scale up the item on hover */
     }
 
     .side-panel ul li a {
@@ -35,11 +40,11 @@
         padding: 10px;
         color: #333;
         text-decoration: none;
-        transition: background-color 0.3s;
+        transition: color 0.3s; /* Transition for text color */
     }
 
     .side-panel ul li a:hover {
-        background-color: #f0f0f0;
+        color: #007bff; /* Change text color on hover */
     }
 
     .main-content {
@@ -52,23 +57,24 @@
     }
 
     .toggle-btn {
-    position: fixed; /* Fixed position relative to the viewport */
-    top: 20px; /* Distance from the top of the viewport */
-    left: 260px; /* Adjust according to sidebar width */
-    z-index: 1000; /* Ensures the button stays above other content */
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: left 0.3s ease;
-}
+        position: fixed; /* Fixed position relative to the viewport */
+        top: 20px; /* Distance from the top of the viewport */
+        left: 260px; /* Adjust according to sidebar width */
+        z-index: 1000; /* Ensures the button stays above other content */
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: left 0.3s ease;
+    }
 
-/* Optional: Adjust position when the side panel is hidden */
-.toggle-btn.hidden {
-    left: 10px;
-}
+    /* Optional: Adjust position when the side panel is hidden */
+    .toggle-btn.hidden {
+        left: 10px;
+    }
+</style>
 
 </style>
 
@@ -85,10 +91,15 @@
         <li><a href="<?php echo e(route('admin.content.create')); ?>"><i class="fas fa-plus-circle"></i> Add Content</a></li>
         <li><a href="<?php echo e(route('admin.content.index')); ?>"><i class="fas fa-eye"></i> Show Content</a></li>
         <li><a href="<?php echo e(route('category.index')); ?>"><i class="fas fa-list"></i> Show Categories</a></li>
-        <li><a href="<?php echo e(route('previews.index')); ?>"><i class="fas fa-plus"></i> Previews</a></li>
+        <li>
+    <a href="<?php echo e(route('previews.index')); ?>">
+        <i class="fas fa-book-open"></i> Previews
+    </a>
+</li>
+
         <li><a href="<?php echo e(route('feedbacks.index')); ?>"><i class="fas fa-comments"></i> Feedback</a></li>
         <li><a href="<?php echo e(route('admin.user.index')); ?>"><i class="fas fa-users"></i> Users</a></li>
-        <li><a href="<?php echo e(route('orders.index')); ?>"><i class="fas fa-link"></i> Orders</a></li>
+        <li><a href="<?php echo e(route('orders.index')); ?>"><i class="fas fa-shopping-cart"></i> Orders</a></li>
     </ul>
 </div>
 <!-- 

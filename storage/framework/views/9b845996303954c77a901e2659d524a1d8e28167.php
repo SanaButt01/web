@@ -49,6 +49,7 @@
                     <th>Phone no</th>
                     <th>Product</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
@@ -66,6 +67,10 @@
                         <?php endif; ?>
                     </td>
                     <td><?php echo e($order->status); ?></td>
+                    <td>
+                    <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('status.edit', $order->id)); ?>'">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button></td>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </table>

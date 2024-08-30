@@ -1,4 +1,5 @@
 <?php $__env->startSection('content'); ?>
+
     <?php echo app('arrilot.widget')->run('DashboardWidgets'); ?>
 <?php $__env->stopSection(); ?>
 
