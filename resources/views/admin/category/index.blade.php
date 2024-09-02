@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
+    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
+        
     </style>
 </head>
 <body>

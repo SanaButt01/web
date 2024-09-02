@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
          $validator = Validator::make($request->all(), [
-            'type' => 'required',
+            'type' => 'required|unique:categories,type',
             'icon' => 'required|image',
         ]);
         if ($validator->fails()) {
@@ -65,7 +65,7 @@ class CategoryController extends Controller
 {
     $validator = Validator::make($request->all(), [
         'type' => 'required',
-        'icon' => 'image',
+        'icon' => 'required|image',
     ]);
     if ($validator->fails()) {
         return redirect::back()->withErrors($validator)->withInput();

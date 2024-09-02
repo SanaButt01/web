@@ -47,9 +47,10 @@ public function store(Request $request)
     // Validation rules
     $validator = Validator::make($request->all(), [
         'category_id' => 'required|exists:categories,category_id',
-        'title' => 'required',
+        'title' => 'required|unique:books,title',
         'author' => 'required',
         'price' => 'required',
+        'path' => 'image|required',
         // Ensure the file is an image and required
     ]);
 
@@ -101,9 +102,10 @@ public function update(Request $request, $book_id)
 {
     $validator = Validator::make($request->all(), [
         'category_id' => 'required|exists:categories,category_id',
-        'title' => 'required',
+      
         'author' => 'required',
         'path' => 'image|required',
+        'title' => 'required|unique:books,title',
         'price' => 'required',
     ]);
     

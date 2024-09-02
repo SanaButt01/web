@@ -17,8 +17,8 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/register', function () {
-  return view('admin.auth.register');
+Route::get('/wel', function () {
+  return view('welcome');
 }
 );
 Route::get('/', function () {
