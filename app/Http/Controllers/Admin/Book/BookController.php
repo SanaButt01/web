@@ -105,7 +105,7 @@ public function update(Request $request, $book_id)
       
         'author' => 'required',
         'path' => 'image|required',
-        'title' => 'required|unique:books,title',
+        'title' => 'required',
         'price' => 'required',
     ]);
     
