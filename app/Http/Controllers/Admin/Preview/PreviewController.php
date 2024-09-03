@@ -127,7 +127,7 @@ class PreviewController extends Controller
      
          // Optionally delete the content itself
         
-         return redirect()->route('previews.index')->with('success', 'Content and associated previews deleted successfully');
+         return redirect()->route('previews.index')->with('success', 'Associated previews deleted successfully');
      }
 
     public function editImage(Request $request)

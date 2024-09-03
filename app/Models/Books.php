@@ -20,7 +20,7 @@ class Books extends Model
 
     public function contents()
     {
-        return $this->hasMany(Content::class);
+        return $this->hasMany(Content::class, 'book_id', 'book_id');
     }
 
 }

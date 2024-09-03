@@ -16,7 +16,7 @@ class Content extends Model
     ];
     public function book()
     {
-        return $this->belongsTo(Books::class);
+        return $this->belongsTo(Books::class, 'book_id', 'book_id');
     }
 
     public function previews()
@@ -25,3 +25,6 @@ class Content extends Model
     }
 
 }
+    
+
+  

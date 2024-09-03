@@ -18,7 +18,7 @@ class ContentController extends Controller
      */
     public function create()
 {
-    $books=Books::all();
+    $books = Books::doesntHave('contents')->get();
     return view('admin.content.create',compact('books'));
 }
 
