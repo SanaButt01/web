@@ -150,20 +150,30 @@ class ContentController extends Controller
      */
     public function destroy($content_id)
     {
-        //
-        
         $content = Content::find($content_id);
-        $path = '/' . $content->path;
-        if (Storage::disk('public')->exists($path)) {
-            Storage::disk('public')->delete($path);
-        }
-
-        $result = $content->delete();
-        if ($result) {
-            return redirect(route('admin.content.index'))->with('success', 'Data has been deleted successfully.');
+    
+        if ($content) {
+         
+            $previews = $content->previews;
+            foreach ($previews as $preview) {
+                $path = $preview->path;
+                if (Storage::disk('public')->exists($path)) {
+                    Storage::disk('public')->delete($path);
+                }
+                $preview->delete();
+            }
+    
+          
+            $result = $content->delete();
+    
+            if ($result) {
+                return redirect(route('admin.content.index'))->with('success', 'Content and all associated previews have been deleted successfully.');
+            } else {
+                return redirect(route('admin.content.index'))->with('error', 'Content deletion failed.');
+            }
         } else {
-
-            return redirect(route('admin.content.index'))->with('error', 'Data has not been deleted');
+            return redirect(route('admin.content.index'))->with('error', 'Content not found.');
         }
     }
+    
 }

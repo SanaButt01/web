@@ -14,10 +14,10 @@
 
     <div class="main-content" id="main-content">
         <div class="container">
-        <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
-            <i class="fas fa-bars"></i>
-        </button>
-       
+            <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
+                <i class="fas fa-bars"></i>
+            </button>
+           
             <div class="row">
                 <div class="col-lg-12 mb-4">
                     <h2>Edit Book</h2>
@@ -29,6 +29,8 @@
                     {{ session('status') }}
                 </div>
             @endif
+
+           
 
             <form action="{{ route('book.update', $book->book_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
