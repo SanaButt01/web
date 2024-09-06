@@ -2,15 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>All Previews</title>
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
     <style>
-        /* Ensure the main content does not overlap with the side panel */
-        .main-content {
-            transition: margin-left 0.3s;
+     
+        /* Responsive Image Row */
+        .image-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .image-row img {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
         }
 
         /* Responsive adjustments */
@@ -25,13 +35,7 @@
                 overflow-x: auto;
             }
 
-            .toggle-btn-navbar {
-                margin-bottom: 15px;
-            }
-
-            .side-panel.hidden + .main-content {
-                margin-left: 0;
-            }
+           
         }
 
         @media (min-width: 769px) {
@@ -39,10 +43,14 @@
                 margin-left: 250px; /* Width of the side panel */
             }
 
-        } 
+          
+        }
+
+        
     </style>
 </head>
 <body>
+
     <?php echo $__env->make('side-panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="main-content" id="main-content">
@@ -54,18 +62,13 @@
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>All Categories</h2>
-                    </div>
-                    <div class="pull-right mb-2">
-                        <a class="btn" href="<?php echo e(route('category.create')); ?>" style="background-color:#F96D41;color:white;">
-                            <i class="fas fa-plus"></i> Add New Category
-                        </a>
+                        <h2 style="margin-top:50px">All Previews</h2>
                     </div>
                 </div>
             </div>
-
+       
             <?php if($message = Session::get('success')): ?>
-                <div class="alert">
+                <div class="alert" style="background-color:#F96D41;color:white">
                     <p><?php echo e($message); ?></p>
                 </div>
             <?php endif; ?>
@@ -74,24 +77,28 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>S.No</th>
-                        <th>Type</th>
-                        <th>Image</th>
+                        <th>Images</th>
                         <th width="280px">Action</th>
                     </tr>
-                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $previews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $content_id => $previewGroup): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($category->category_id); ?></td>
-                        <td><?php echo e($category->type); ?></td>
-                        <td><img src="<?php echo e(asset('storage/'.$category->icon)); ?>" style="height: 50px; width: 50px"></td>
+                        <td><?php echo e($content_id); ?></td>
                         <td>
-                            <form action="<?php echo e(route('category.destroy', $category->category_id)); ?>" method="POST">
-                                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('category.edit', $category->category_id)); ?>'">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
+                            <div class="image-row">
+                                <?php $__currentLoopData = $previewGroup; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $preview): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <img src="<?php echo e(asset('storage/' . $preview->path)); ?>" alt="Image">
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('previews.edit', $preview->content_id)); ?>'">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <form action="<?php echo e(route('previews.destroy', $content_id)); ?>" method="POST" style="display:inline;">
                                 <?php echo csrf_field(); ?>
                                 <?php echo method_field('DELETE'); ?>
-                                <button type="submit" class="btn btn-danger action-btn">
-                                    <i class="fas fa-trash"></i> Delete
+                                <button type="submit" class="btn btn-danger action-btn" onclick="return confirm('Are you sure you want to delete this preview?');">
+                                    <i class="fas fa-trash-alt"></i> Delete
                                 </button>
                             </form>
                         </td>
@@ -101,6 +108,7 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>
 
@@ -113,10 +121,12 @@
         if (panel.classList.contains('hidden')) {
             panel.classList.remove('hidden');
             mainContent.classList.remove('expanded');
+            toggleBtn.classList.remove('hidden');
         } else {
             panel.classList.add('hidden');
             mainContent.classList.add('expanded');
+            toggleBtn.classList.add('hidden');
         }
     }
 </script>
-<?php /**PATH F:\web\bookscity\resources\views/admin/category/index.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\web\bookscity\resources\views/admin/preview/index.blade.php ENDPATH**/ ?>

@@ -16,7 +16,12 @@ class AdminController extends Controller
 
     
    
- 
+  
+    public function profile()
+{
+    $admin = Admin::find(auth()->user()->id);
+    return view('admin.index', compact('admin'));
+}
     public function dashboard()
 {
     $admin = Admin::find(auth()->user()->id);

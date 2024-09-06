@@ -159,11 +159,11 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-
+<!-- 
                     <a class="btn btn-link" href="<?php echo e(route('admin.register')); ?>">
                         <?php echo e(__('Forgot Your Password?')); ?>
 
-                    </a>
+                    </a> -->
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"><?php echo e(__('Login')); ?></button>

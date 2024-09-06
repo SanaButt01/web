@@ -104,7 +104,7 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0"><?php echo e(__('Welcome!')); ?></h6>
                             </div>
-                            <a href="#" class="dropdown-item">
+                            <a href="<?php echo e(route('admin.profile')); ?>" class="dropdown-item">
                                 <i class="ni ni-single-02"></i>
                                 <span><?php echo e(__('My profile')); ?></span>
                             </a>

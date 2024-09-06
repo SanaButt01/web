@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
-    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
     <style>
         /* Ensure the main content does not overlap with the side panel */
         .main-content {
@@ -26,8 +26,11 @@
                 overflow-x: auto;
             }
 
-            .toggle-btn-navbar {
-                margin-bottom: 15px;
+         
+
+        @media (min-width: 769px) {
+            .main-content {
+                margin-left: 250px; /* Width of the side panel */
             }
 
             .side-panel.hidden + .main-content {
@@ -35,19 +38,17 @@
             }
         }
 
-        @media (min-width: 769px) {
-            .main-content {
-                margin-left: 250px; /* Width of the side panel */
-            }
-
-           
+        /* .hidden {
+            display: none;
         }
 
-       
+        .expanded {
+            margin-left: 0 !important;
+        } */
     </style>
 </head>
 <body>
-    @include('side-panel')
+    <?php echo $__env->make('side-panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
@@ -55,28 +56,28 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="row"style="text-align:center">
+            <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
                         <h2>All Contents</h2>
                     </div>
                     <div class="pull-right mb-2">
-                        <a class="btn" href="{{ route('admin.content.create') }}" style="background-color:#F96D41;color:white;">
+                        <a class="btn" href="<?php echo e(route('admin.content.create')); ?>" style="background-color:#F96D41;color:white;">
                             <i class="fas fa-plus"></i> Add New Content
                         </a>
                     </div>
                 </div>
             </div>
 
-            @if ($message = Session::get('success'))
+            <?php if($message = Session::get('success')): ?>
                 <div class="alert">
-                    <p>{{ $message }}</p>
+                    <p><?php echo e($message); ?></p>
                 </div>
-            @endif
+            <?php endif; ?>
 
-            @if($contents->isEmpty())
+            <?php if($contents->isEmpty()): ?>
                 <p>No contents found.</p>
-            @else
+            <?php else: ?>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
@@ -84,30 +85,30 @@
                             <th>Description</th>
                             <th width="280px">Action</th>
                         </tr>
-                        @foreach ($contents as $content)
+                        <?php $__currentLoopData = $contents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{ $content->content_id }}</td>
-                                <td>{{ $content->description }}</td>
+                                <td><?php echo e($content->content_id); ?></td>
+                                <td><?php echo e($content->description); ?></td>
                                 <td>
-                                    <form action="{{ route('content.destroy', $content->content_id) }}" method="POST">
-                                        <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('content.edit', $content->content_id) }}'">
+                                    <form action="<?php echo e(route('content.destroy', $content->content_id)); ?>" method="POST">
+                                        <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('content.edit', $content->content_id)); ?>'">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
-                                        @csrf
-                                        @method('DELETE')
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('DELETE'); ?>
                                         <button type="submit" class="btn btn-danger action-btn">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
-                                        <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='{{ route('previews.create', $content->content_id) }}'">
+                                        <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='<?php echo e(route('previews.create', $content->content_id)); ?>'">
                                             <i class="fas fa-plus"></i> Add Preview
                                         </button>
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </table>
                 </div>
-            @endif
+            <?php endif; ?>
         </div>
     </div>
 </body>
@@ -128,3 +129,4 @@
         }
     }
 </script>
+<?php /**PATH F:\web\bookscity\resources\views/admin/content/index.blade.php ENDPATH**/ ?>

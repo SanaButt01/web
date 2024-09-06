@@ -18,7 +18,7 @@
                 <i class="fas fa-bars"></i>
             </button>
            
-            <div class="row">
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 mb-4">
                     <h2>Edit Book</h2>
                 </div>
