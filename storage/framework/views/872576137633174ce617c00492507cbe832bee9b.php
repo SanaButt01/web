@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Orders</title>
+    <title>All Users</title>
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
     <style>
-        /* Ensure the main content does not overlap with the side panel */
-      
+     
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-content {
@@ -23,15 +22,13 @@
                 overflow-x: auto;
             }
 
-          
+            
         }
 
         @media (min-width: 769px) {
             .main-content {
                 margin-left: 250px; /* Width of the side panel */
             }
-
-           
         }
 
         
@@ -45,18 +42,15 @@
             <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                 <i class="fas fa-bars"></i>
             </button>
+
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>All Orders</h2>
+                        <h2>All Users</h2>
                     </div>
                 </div>
             </div>
-            <div class="pull-right mb-2">
-                <a class="btn" href="<?php echo e(route('orders.status')); ?>" style="background-color:#F96D41;color:white;">
-                    <i class="fas fa-plus"></i> Add Status
-                </a>
-            </div>
+
             <?php if($message = Session::get('success')): ?>
                 <div class="alert" style="background-color:#F96D41;color:white">
                     <p><?php echo e($message); ?></p>
@@ -66,40 +60,18 @@
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <tr>
-                        <th>S.No</th>
+                        <th>Id</th>
+                        <th>Name</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone no</th>
-                        <th>Product</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th width="280px">Icon</th>
                     </tr>
-                    <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($order->id); ?></td>
-                        <td><?php echo e($order->email); ?></td>
-                        <td><?php echo e($order->address); ?></td>
-                        <td><?php echo e($order->phone_number); ?></td>
+                        <td><?php echo e($user->id); ?></td>
+                        <td><?php echo e($user->name); ?></td>
+                        <td><?php echo e($user->email); ?></td>
                         <td>
-                            <?php if(is_array($order->product)): ?>
-                                <?php echo e(implode(', ', $order->product)); ?>
-
-                            <?php else: ?>
-                                <?php echo e($order->product); ?>
-
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo e($order->status); ?></td>
-                        <td>
-                            <?php if($order->status === 'Pending'): ?>
-                                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('status.edit', $order->id)); ?>'">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                            <?php elseif($order->status === 'Delivered'): ?>
-                                <button type="button" class="btn btn-secondary" disabled>
-                                    <i class="fas fa-lock"></i> No Action
-                                </button>
-                            <?php endif; ?>
+                            <img src="<?php echo e(asset('storage/' . $user->icon)); ?>" alt="User Icon">
                         </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -127,4 +99,4 @@
         }
     }
 </script>
-<?php /**PATH F:\web\bookscity\resources\views/admin/order/index.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\web\bookscity\resources\views/admin/user/index.blade.php ENDPATH**/ ?>

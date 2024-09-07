@@ -12,12 +12,12 @@ class OrderController extends Controller
         // Validate the request
         $request->validate([
             'email' => 'required|email|unique:orders,email',
-            'phone_number' => 'required|string',
-            'address' => 'required|string',
-            'product' => 'required|array',
-            'product.*' => 'required|string',
-            'status' => 'required|string',
-            'total' => 'required|numeric',
+           
+            'phone_number' => 'string|max:11', // Adjust based on expected format
+            'address' => 'string|max:255', // Adjust based on expected length
+            'product' => 'required|string|max:255',
+            'status' => 'required|in:Pending,Delivered', // Ensure only valid statuses
+            'total' => 'required|numeric|min:0',
         ]);
 
         // Create a new order

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
-      </style>
+    </style>
 </head>
 <body>
 
@@ -19,18 +19,21 @@
             <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
                 <i class="fas fa-bars"></i>
             </button>
-          
-            <div class="row">
+
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 mb-4">
                     <h2>Add Content</h2>
                 </div>
             </div>
 
+            <!-- Display Success or Error Alert -->
             @if(session('status'))
-                <div class="alert alert-danger mb-3">
+                <div class="alert alert-success mb-3">
                     {{ session('status') }}
                 </div>
             @endif
+
+          
 
             <form action="{{ route('content.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -71,6 +74,7 @@
     </div>
 </body>
 </html>
+
 <script>
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');

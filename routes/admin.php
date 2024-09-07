@@ -24,7 +24,8 @@ Route::group(['prefix' => 'admin'], function () {
 // Admin Dashboard Routes
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('admindashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-  
+    Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
+
     Route::get('adminedit/{admin}', [AdminController::class, 'edit'])->name('admin.edit');
 Route::put('adminupdate/{id}', [AdminController::class, 'update'])->name('admin.update');
 

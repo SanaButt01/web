@@ -131,10 +131,10 @@
                         </span>
                         @enderror
                     </div>
-
+<!-- 
                     <a class="btn btn-link" href="{{ route('admin.register') }}">
                         {{ __('Forgot Your Password?') }}
-                    </a>
+                    </a> -->
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block">{{ __('Login') }}</button>

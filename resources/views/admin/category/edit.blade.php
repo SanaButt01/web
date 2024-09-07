@@ -18,17 +18,20 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="row">
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 mb-4">
                     <h2>Edit Category</h2>
                 </div>
             </div>
 
+            <!-- Display Success or Error Alert -->
             @if(session('status'))
-                <div class="alert alert-primary mb-3">
+                <div class="alert alert-success mb-3">
                     {{ session('status') }}
                 </div>
             @endif
+
+          
 
             <form action="{{ route('category.update', $category->category_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -48,18 +51,18 @@
                         <div class="form-group">
                             <strong>Category Image:</strong>
                             <input type="file" name="icon" class="form-control" placeholder="Category Image">
-                            <img src="{{ asset('storage/' . $category->icon) }}" style="height: 50px; width: 50px">
+                            <img src="{{ asset('storage/' . $category->icon) }}" style="height: 50px; width: 50px; margin-top: 5px;">
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-back form-control">Submit</button>
+                        <button type="submit" class="btn btn-back form-control" >Submit</button>
                     </div>
                 </div>
             </form>
 
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <a class="btn btn-back" href="{{ route('category.index') }}">Back</a>
+                    <a class="btn btn-back" href="{{ route('category.index') }}" >Back</a>
                 </div>
             </div>
         </div>

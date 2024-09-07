@@ -17,18 +17,21 @@
             <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
                 <i class="fas fa-bars"></i>
             </button>
-            
-            <div class="row">
+
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 mb-4">
                     <h2>Edit Content</h2>
                 </div>
             </div>
 
+            <!-- Display Success or Error Alert -->
             @if(session('status'))
-                <div class="alert alert-primary mb-3">
+                <div class="alert alert-success mb-3">
                     {{ session('status') }}
                 </div>
             @endif
+
+           
 
             <form action="{{ route('content.update', $content->content_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -37,11 +40,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <strong>Category:</strong>
+                            <strong>Select Book:</strong>
                             <select name="book_id" class="form-control">
                                 @foreach($books as $book)
                                     <option value="{{ $book->book_id }}"
-                                        style="color:blue"
                                         {{ old('book_id', $content->book_id) == $book->book_id ? 'selected' : '' }}>
                                         {{ $book->title }}
                                     </option>

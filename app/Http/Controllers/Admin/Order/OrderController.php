@@ -18,11 +18,13 @@ class OrderController extends Controller
     }
     public function create()
     {
-        // return response()->json($request->toArray());
-        $orders = Order::latest()->get();
+        $orders = Order::whereNull('status')->get();
+    
+        // Debugging: Check if orders are retrieved
+      
+    
         return view('admin.order.status', compact('orders'));
     }
-
     public function storeStatus(Request $request)
     {
         // Validate the request data

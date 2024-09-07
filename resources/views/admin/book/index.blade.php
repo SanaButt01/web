@@ -8,21 +8,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
+        /* Ensure the main content does not overlap with the side panel */
+        .main-content {
+            transition: margin-left 0.3s;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+                padding: 0 10px;
+            }}
+
+            /* Adjust table for smaller screens */
+            .table-responsive {
+                overflow-x: auto;
+            }
+
+         
+
+      
+
+        
     </style>
 </head>
 <body>
-    
-        @include('side-panel')
 
-    <div class="main-content"id="main-content">
-        <div class="container"style="margin-top:40px">
-        <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
-            <i class="fas fa-bars"></i>
-        </button>
-       
-            <div class="row">
+    @include('side-panel')
+
+    <div class="main-content" id="main-content">
+        <div class="container" style="margin-top:40px">
+            <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 margin-tb">
-                    <div class="pull -left">
+                    <div class="pull-left">
                         <h2>All Books</h2>
                     </div>
                     <div class="pull-right mb-2">
@@ -58,41 +80,43 @@
             @if($books->isEmpty())
                 <p>No books found.</p>
             @else
-                <table class="table table-bordered">
-                    <tr>
-                        <th>S.No</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Category</th>
-                        <th>Image</th>
-                        <th>Price</th>
-                        <th>Discount</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                    @foreach ($books as $book)
+                <div class="table-responsive">
+                    <table class="table table-bordered">
                         <tr>
-                            <td>{{ $book->book_id }}</td>
-                            <td>{{ $book->title }}</td>
-                            <td>{{ $book->author }}</td>
-                            <td>{{ $book->category ? $book->category->type : 'No Category' }}</td>
-                            <td><img src="{{ asset('storage/' . $book->path) }}" style="height: 50px; width: 50px"></td>
-                            <td>{{ $book->price }}</td>
-                            <td>{{ $book->disc }}</td>
-                            <td>
-                                <form action="{{ route('book.destroy', $book->book_id) }}" method="POST">
-                                    <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('book.edit', $book->book_id) }}'">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger action-btn">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </button>
-                                </form>
-                            </td>
+                            <th>S.No</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th width="280px">Action</th>
                         </tr>
-                    @endforeach
-                </table>
+                        @foreach ($books as $book)
+                            <tr>
+                                <td>{{ $book->book_id }}</td>
+                                <td>{{ $book->title }}</td>
+                                <td>{{ $book->author }}</td>
+                                <td>{{ $book->category ? $book->category->type : 'No Category' }}</td>
+                                <td><img src="{{ asset('storage/' . $book->path) }}" style="height: 50px; width: 50px"></td>
+                                <td>{{ $book->price }}</td>
+                                <td>{{ $book->disc }}</td>
+                                <td>
+                                    <form action="{{ route('book.destroy', $book->book_id) }}" method="POST">
+                                        <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('book.edit', $book->book_id) }}'">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger action-btn">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </table>
+                </div>
             @endif
         </div>
     </div>
@@ -107,11 +131,9 @@
         if (panel.classList.contains('hidden')) {
             panel.classList.remove('hidden');
             mainContent.classList.remove('expanded');
-            toggleBtn.classList.remove('hidden');
         } else {
             panel.classList.add('hidden');
             mainContent.classList.add('expanded');
-            toggleBtn.classList.add('hidden');
         }
     }
 </script>

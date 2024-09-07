@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('phone_number');
             $table->text('address');
             $table->string('product');
-            $table->string('status');
-          $table->decimal('total', 8, 2);
+            $table->string('status')->nullable();
+            $table->decimal('total', 8, 2);
             $table->timestamps();
         });
     }

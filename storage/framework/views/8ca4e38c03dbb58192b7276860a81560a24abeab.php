@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>All Orders</title>
+    <title>Index</title>
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
     <style>
         /* Ensure the main content does not overlap with the side panel */
-      
+        .main-content {
+            transition: margin-left 0.3s;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-content {
@@ -23,7 +25,13 @@
                 overflow-x: auto;
             }
 
-          
+            .toggle-btn-navbar {
+                margin-bottom: 15px;
+            }
+
+            .side-panel.hidden + .main-content {
+                margin-left: 0;
+            }
         }
 
         @media (min-width: 769px) {
@@ -31,10 +39,7 @@
                 margin-left: 250px; /* Width of the side panel */
             }
 
-           
-        }
-
-        
+        } 
     </style>
 </head>
 <body>
@@ -45,20 +50,22 @@
             <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                 <i class="fas fa-bars"></i>
             </button>
+
             <div class="row">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
-                        <h2>All Orders</h2>
+                        <h2>All Categories</h2>
+                    </div>
+                    <div class="pull-right mb-2">
+                        <a class="btn" href="<?php echo e(route('category.create')); ?>" style="background-color:#F96D41;color:white;">
+                            <i class="fas fa-plus"></i> Add New Category
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="pull-right mb-2">
-                <a class="btn" href="<?php echo e(route('orders.status')); ?>" style="background-color:#F96D41;color:white;">
-                    <i class="fas fa-plus"></i> Add Status
-                </a>
-            </div>
+
             <?php if($message = Session::get('success')): ?>
-                <div class="alert" style="background-color:#F96D41;color:white">
+                <div class="alert">
                     <p><?php echo e($message); ?></p>
                 </div>
             <?php endif; ?>
@@ -67,39 +74,26 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>S.No</th>
-                        <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone no</th>
-                        <th>Product</th>
-                        <th>Status</th>
-                        <th>Action</th>
+                        <th>Type</th>
+                        <th>Image</th>
+                        <th width="280px">Action</th>
                     </tr>
-                    <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
-                        <td><?php echo e($order->id); ?></td>
-                        <td><?php echo e($order->email); ?></td>
-                        <td><?php echo e($order->address); ?></td>
-                        <td><?php echo e($order->phone_number); ?></td>
+                        <td><?php echo e($category->category_id); ?></td>
+                        <td><?php echo e($category->type); ?></td>
+                        <td><img src="<?php echo e(asset('storage/'.$category->icon)); ?>" style="height: 50px; width: 50px"></td>
                         <td>
-                            <?php if(is_array($order->product)): ?>
-                                <?php echo e(implode(', ', $order->product)); ?>
-
-                            <?php else: ?>
-                                <?php echo e($order->product); ?>
-
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo e($order->status); ?></td>
-                        <td>
-                            <?php if($order->status === 'Pending'): ?>
-                                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('status.edit', $order->id)); ?>'">
+                            <form action="<?php echo e(route('category.destroy', $category->category_id)); ?>" method="POST">
+                                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('category.edit', $category->category_id)); ?>'">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                            <?php elseif($order->status === 'Delivered'): ?>
-                                <button type="button" class="btn btn-secondary" disabled>
-                                    <i class="fas fa-lock"></i> No Action
+                                <?php echo csrf_field(); ?>
+                                <?php echo method_field('DELETE'); ?>
+                                <button type="submit" class="btn btn-danger action-btn">
+                                    <i class="fas fa-trash"></i> Delete
                                 </button>
-                            <?php endif; ?>
+                            </form>
                         </td>
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -119,12 +113,10 @@
         if (panel.classList.contains('hidden')) {
             panel.classList.remove('hidden');
             mainContent.classList.remove('expanded');
-            toggleBtn.classList.remove('hidden');
         } else {
             panel.classList.add('hidden');
             mainContent.classList.add('expanded');
-            toggleBtn.classList.add('hidden');
         }
     }
 </script>
-<?php /**PATH F:\web\bookscity\resources\views/admin/order/index.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\web\bookscity\resources\views/admin/category/index.blade.php ENDPATH**/ ?>

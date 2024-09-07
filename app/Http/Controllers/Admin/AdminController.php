@@ -16,7 +16,12 @@ class AdminController extends Controller
 
     
    
- 
+  
+    public function profile()
+{
+    $admin = Admin::find(auth()->user()->id);
+    return view('admin.index', compact('admin'));
+}
     public function dashboard()
 {
     $admin = Admin::find(auth()->user()->id);
@@ -36,7 +41,7 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'nullable|min:8', // Allow password to be nullable but must have a minimum length if provided
+            'password' => 'required|min:8', // Allow password to be nullable but must have a minimum length if provided
         ]);
     
         // Find the admin record
@@ -60,10 +65,10 @@ class AdminController extends Controller
     
         // Log the result
         if ($result) {
-            Log::info("Admin updated successfully with ID: $id");
+          
             return redirect(route('admin.dashboard'))->with('success', 'Data has been updated successfully.');
         } else {
-            Log::error("Failed to update admin with ID: $id");
+          
             return redirect(route('admin.dashboard'))->with('error', 'Data has not been updated.');
         }
     }
