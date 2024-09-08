@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Status</title>
+    <title>Add Categories</title>
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
-    <style>
-    </style>
 </head>
 <body>
 
@@ -23,7 +20,7 @@
 
             <div class="row"style="text-align:center">
                 <div class="col-lg-12 mb-4">
-                    <h2>Add Status</h2>
+                    <h2>Add New Category</h2>
                 </div>
             </div>
 
@@ -35,46 +32,50 @@
                 </div>
             <?php endif; ?>
 
-           
-            <form action="<?php echo e(route('status.store')); ?>" method="POST">
+          
+
+            <form action="<?php echo e(route('category.store')); ?>" method="POST" enctype="multipart/form-data">
                 <?php echo csrf_field(); ?>
                 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <strong>Email:</strong>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                </div>
-                <select name="email" class="form-control">
-                    <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option value="<?php echo e($order->email); ?>" style="color:blue"><?php echo e($order->email); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                </select>
-            </div>
-        </div>
-    </div>
-
                     <div class="col-md-6">
                         <div class="form-group">
-                            <strong>Order Status:</strong>
-                            <select name="status" class="form-control">
-                                <option value="Pending">Pending</option>
-                                <option value="Delivered">Delivered</option>
-                            </select>
+                            <strong>Category Type:</strong>
+                            <input type="text" name="type" class="form-control" placeholder="Category Type">
+                            <?php $__errorArgs = ['type'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <div class="alert alert-danger mt-1"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Image:</strong>
+                            <input type="file" name="icon" class="form-control" placeholder="Category Image">
+                            <?php $__errorArgs = ['icon'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                <div class="alert alert-danger mt-1"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>                      </div>
+                    </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn btn-back form-control">Submit</button>
+                        <button type="submit" class="btn btn-back form-control" >Submit</button>
                     </div>
                 </div>
             </form>
-
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <a class="btn btn-back" href="<?php echo e(route('orders.index')); ?>">Back</a>
+                    <a class="btn btn-back" href="<?php echo e(route('category.index')); ?>" >Back</a>
                 </div>
             </div>
         </div>
@@ -99,4 +100,4 @@
         }
     }
 </script>
-<?php /**PATH F:\web\bookscity\resources\views/admin/order/status.blade.php ENDPATH**/ ?>
+<?php /**PATH F:\web\bookscity\resources\views/admin/category/create.blade.php ENDPATH**/ ?>

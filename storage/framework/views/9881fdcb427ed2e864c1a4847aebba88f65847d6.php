@@ -6,30 +6,46 @@
     <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>">
     <style>
-        /* Ensure the main content does not overlap with the side panel */
         .main-content {
             transition: margin-left 0.3s;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
+        }
 
-            /* Adjust table for smaller screens */
-            .table-responsive {
-                overflow-x: auto;
-            }
+        .table-responsive {
+            overflow-x: auto;
+        }
 
-         
+        /* Layout adjustments for the toggle, add, heading, and filter */
+        .toggle-btn-row, .add-btn-row, .filter-row {
+            margin-bottom: 15px;
+        }
 
-      
+        /* Center the heading */
+        .heading-row {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-        
+        /* Align the filter controls inline */
+        .filter-row .form-inline {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .filter-row .form-group {
+            margin-right: 10px;
+        }
+
+     
     </style>
 </head>
 <body>
@@ -38,46 +54,54 @@
 
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
-            <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="row">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
-                        <h2>All Books</h2>
-                    </div>
-                    <div class="pull-right mb-2">
-                        <a class="btn" href="<?php echo e(route('admin.book.create')); ?>" style="background-color:#F96D41;color:white;">
-                            <i class="fas fa-plus"></i> Add New Book
-                        </a>
-                    </div>
-                </div>
+            
+            <!-- Row for Toggle Button -->
+            <div class="toggle-btn-row">
+                <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
 
+            <!-- Row for Heading -->
+            <div class="heading-row">
+                <h2>All Books</h2>
+            </div>
+
+            <!-- Row for Add Button -->
+            <div class="add-btn-row">
+                <a class="btn" href="<?php echo e(route('admin.book.create')); ?>" style="background-color:#F96D41;color:white;">
+                    <i class="fas fa-plus"></i> Add New Book
+                </a>
+            </div>
+
+            <!-- Row for Filter -->
+            <div class="filter-row">
+                <form action="<?php echo e(route('admin.book.index')); ?>" method="GET" class="form-inline">
+                    <div class="form-group">
+                        <label for="category_id">Filter by Category:</label>
+                        <select name="category_id" id="category_id" class="form-control ml-2">
+                            <option value="">All Categories</option>
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($category->category_id); ?>" 
+                                    <?php echo e(request('category_id') == $category->category_id ? 'selected' : ''); ?>>
+                                    <?php echo e($category->type); ?>
+
+                                </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary ml-2">Filter</button>
+                </form>
+            </div>
+
+            <!-- Success message if any -->
             <?php if($message = Session::get('success')): ?>
                 <div class="alert" style="background-color:#F96D41;color:white">
                     <p><?php echo e($message); ?></p>
                 </div>
             <?php endif; ?>
 
-            <form action="<?php echo e(route('admin.book.index')); ?>" method="GET" class="form-inline mb-3">
-                <div class="form-group">
-                    <label for="category_id">Filter by Category:</label>
-                    <select name="category_id" id="category_id" class="form-control ml-2">
-                        <option value="">All Categories</option>
-                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <option value="<?php echo e($category->category_id); ?>" 
-                                <?php echo e(request('category_id') == $category->category_id ? 'selected' : ''); ?>>
-                                <?php echo e($category->type); ?>
-
-                            </option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary ml-2">Filter</button>
-            </form>
-
+            <!-- Table displaying the books -->
             <?php if($books->isEmpty()): ?>
                 <p>No books found.</p>
             <?php else: ?>
@@ -121,8 +145,10 @@
             <?php endif; ?>
         </div>
     </div>
+
 </body>
 </html>
+
 <script>
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');

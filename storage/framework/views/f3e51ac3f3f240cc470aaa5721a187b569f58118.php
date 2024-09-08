@@ -59,7 +59,7 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="row">
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
                         <h2 style="margin-top:50px">All Previews</h2>

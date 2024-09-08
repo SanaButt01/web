@@ -45,18 +45,14 @@
             <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                 <i class="fas fa-bars"></i>
             </button>
-            <div class="row">
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
                         <h2>All Orders</h2>
                     </div>
                 </div>
             </div>
-            <div class="pull-right mb-2">
-                <a class="btn" href="<?php echo e(route('orders.status')); ?>" style="background-color:#F96D41;color:white;">
-                    <i class="fas fa-plus"></i> Add Status
-                </a>
-            </div>
+           
             <?php if($message = Session::get('success')): ?>
                 <div class="alert" style="background-color:#F96D41;color:white">
                     <p><?php echo e($message); ?></p>
@@ -91,11 +87,11 @@
                         </td>
                         <td><?php echo e($order->status); ?></td>
                         <td>
-                            <?php if($order->status === 'Pending'): ?>
+                            <?php if($order->status === 'pending'): ?>
                                 <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='<?php echo e(route('status.edit', $order->id)); ?>'">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                            <?php elseif($order->status === 'Delivered'): ?>
+                            <?php elseif($order->status === 'delivered'): ?>
                                 <button type="button" class="btn btn-secondary" disabled>
                                     <i class="fas fa-lock"></i> No Action
                                 </button>

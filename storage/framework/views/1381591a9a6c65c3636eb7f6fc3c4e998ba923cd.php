@@ -43,7 +43,7 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <div class="row">
+            <div class="row"style="text-align:center">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-left">
                         <h2 style="margin-top:50px">All Feedbacks</h2>
@@ -56,7 +56,8 @@
                     <p><?php echo e($message); ?></p>
                 </div>
             <?php endif; ?>
-
+            <div class="table-responsive">
+           
             <table class="table table-bordered">
                 <tr>
                     <th>S.No</th>
@@ -71,6 +72,7 @@
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </table>
+    </div>
         </div>
     </div>
 </body>

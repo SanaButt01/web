@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Order Status</title>
-    <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('images/log.jpeg')); ?>" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="<?php echo e(asset('css/styles.css')); ?>"> <!-- Link to the external stylesheet -->
 </head>
 <body>
 
-    @include('side-panel')
+    <?php echo $__env->make('side-panel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="main-content" id="main-content">
         <div class="container">
@@ -26,28 +26,29 @@
             </div>
 
             <!-- Display Success or Error Alert -->
-            @if(session('status'))
+            <?php if(session('status')): ?>
                 <div class="alert alert-success mb-3">
-                    {{ session('status') }}
+                    <?php echo e(session('status')); ?>
+
                 </div>
-            @endif
+            <?php endif; ?>
 
 
-            <form action="{{ route('status.update', $order->id) }}" method="POST">
-                @csrf
-                @method('PUT')
+            <form action="<?php echo e(route('status.update', $order->id)); ?>" method="POST">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <strong>User Email:</strong>
-                            <input type="email" class="form-control" value="{{ $order->email }}" disabled>
+                            <input type="email" class="form-control" value="<?php echo e($order->email); ?>" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <strong>Old Status:</strong>
-                            <input type="text" class="form-control" value="{{ $order->status }}" disabled>
+                            <input type="text" class="form-control" value="<?php echo e($order->status); ?>" disabled>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -58,7 +59,7 @@
             <option value="" disabled selected>Select Status</option>
             
             <!-- Option to select Delivered -->
-            <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>delivered</option>
+            <option value="delivered" <?php echo e($order->status == 'delivered' ? 'selected' : ''); ?>>delivered</option>
         </select>
     </div>
 </div>
@@ -71,7 +72,7 @@
 
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <a class="btn btn-back" href="{{ route('orders.index') }}">Back</a>
+                    <a class="btn btn-back" href="<?php echo e(route('orders.index')); ?>">Back</a>
                 </div>
             </div>
         </div>
@@ -96,3 +97,4 @@
         }
     }
 </script>
+<?php /**PATH F:\web\bookscity\resources\views/admin/order/edit.blade.php ENDPATH**/ ?>

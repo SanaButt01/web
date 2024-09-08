@@ -86,18 +86,13 @@
 
    
    <li><a href="<?php echo e(route('admin.dashboard')); ?>"><i class="fas fa-columns"></i> Dashboard</a></li>
+   <li><a href="<?php echo e(route('category.index')); ?>"><i class="fas fa-list"></i> Categories</a></li>
+ <li><a href="<?php echo e(route('admin.book.index')); ?>"><i class="fas fa-book"></i> Books</a></li>
+        <!-- <li><a href="<?php echo e(route('admin.content.create')); ?>"><i class="fas fa-plus-circle"></i> Add Content</a></li> -->
+<li><a href="<?php echo e(route('admin.content.index')); ?>"><i class="fas fa-eye"></i> Contents</a></li>
+ <li><a href="<?php echo e(route('previews.index')); ?>"> <i class="fas fa-book-open"></i> Previews</a></li>
 
-                       <li><a href="<?php echo e(route('admin.book.index')); ?>"><i class="fas fa-book"></i> Show Books</a></li>
-        <li><a href="<?php echo e(route('admin.content.create')); ?>"><i class="fas fa-plus-circle"></i> Add Content</a></li>
-        <li><a href="<?php echo e(route('admin.content.index')); ?>"><i class="fas fa-eye"></i> Show Content</a></li>
-        <li><a href="<?php echo e(route('category.index')); ?>"><i class="fas fa-list"></i> Show Categories</a></li>
-        <li>
-    <a href="<?php echo e(route('previews.index')); ?>">
-        <i class="fas fa-book-open"></i> Previews
-    </a>
-</li>
-
-        <li><a href="<?php echo e(route('feedbacks.index')); ?>"><i class="fas fa-comments"></i> Feedback</a></li>
+        <li><a href="<?php echo e(route('feedbacks.index')); ?>"><i class="fas fa-comments"></i> Feedbacks</a></li>
         <li><a href="<?php echo e(route('admin.user.index')); ?>"><i class="fas fa-users"></i> Users</a></li>
         <li><a href="<?php echo e(route('orders.index')); ?>"><i class="fas fa-shopping-cart"></i> Orders</a></li>
     </ul>
