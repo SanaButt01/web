@@ -51,14 +51,18 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <strong>New Status:</strong>
-                            <select name="status" class="form-control">
-                                <option value="Pending" {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
-                            </select>
-                        </div>
-                    </div>
+    <div class="form-group">
+        <strong>Edit Status:</strong>
+        <select name="status" class="form-control">
+            <!-- Placeholder option to prompt user to select a status -->
+            <option value="" disabled selected>Select Status</option>
+            
+            <!-- Option to select Delivered -->
+            <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>delivered</option>
+        </select>
+    </div>
+</div>
+
                     <div class="col-md-12">
                         <button type="submit" class="btn btn-back form-control">Update Status</button>
                     </div>

@@ -52,11 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pull-right mb-2">
-                <a class="btn" href="{{ route('orders.status') }}" style="background-color:#F96D41;color:white;">
-                    <i class="fas fa-plus"></i> Add Status
-                </a>
-            </div>
+           
             @if ($message = Session::get('success'))
                 <div class="alert" style="background-color:#F96D41;color:white">
                     <p>{{ $message }}</p>
@@ -89,11 +85,11 @@
                         </td>
                         <td>{{ $order->status }}</td>
                         <td>
-                            @if($order->status === 'Pending')
+                            @if($order->status === 'pending')
                                 <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('status.edit', $order->id) }}'">
                                     <i class="fas fa-edit"></i> Edit
                                 </button>
-                            @elseif($order->status === 'Delivered')
+                            @elseif($order->status === 'delivered')
                                 <button type="button" class="btn btn-secondary" disabled>
                                     <i class="fas fa-lock"></i> No Action
                                 </button>

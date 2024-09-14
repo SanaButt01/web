@@ -16,38 +16,38 @@ class OrderController extends Controller
         $orders = Order::latest()->get();
         return view('admin.order.index', compact('orders'));
     }
-    public function create()
-    {
-        $orders = Order::whereNull('status')->get();
+    // public function create()
+    // {
+    //     $orders = Order::whereNull('status')->get();
     
-        // Debugging: Check if orders are retrieved
+    //     // Debugging: Check if orders are retrieved
       
     
-        return view('admin.order.status', compact('orders'));
-    }
-    public function storeStatus(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'email' => 'required|email',
-            'status' => 'required|string|max:255',
-        ]);
+    //     return view('admin.order.status', compact('orders'));
+    // // }
+    // public function storeStatus(Request $request)
+    // {
+    //     // Validate the request data
+    //     $request->validate([
+    //         'email' => 'required|email',
+    //         'status' => 'required|string|max:255',
+    //     ]);
 
-        // Find the order by email
-        $order = Order::where('email', $request->email)->first();
+    //     // Find the order by email
+    //     $order = Order::where('email', $request->email)->first();
 
-        // Check if the order exists
-        if (!$order) {
-            return redirect()->back()->with('status', 'Order not found.');
-        }
+    //     // Check if the order exists
+    //     if (!$order) {
+    //         return redirect()->back()->with('status', 'Order not found.');
+    //     }
 
-        // Update the status
-        $order->status = $request->status;
-        $order->save();
+    //     // Update the status
+    //     $order->status = $request->status;
+    //     $order->save();
 
-        // Redirect back with a success message
-        return redirect()->back()->with('status', 'Order status updated successfully.');
-    }
+    //     // Redirect back with a success message
+    //     return redirect()->back()->with('status', 'Order status updated successfully.');
+    // }
     public function edit($id)
     {
         $order = Order::find($id);
@@ -60,7 +60,7 @@ public function update(Request $request, $id)
 {
     $validator = Validator::make($request->all(), [
         
-        'status' => 'required|in:Pending,Delivered',
+        'status' => 'required',
     ]);
     
     if ($validator->fails()) {

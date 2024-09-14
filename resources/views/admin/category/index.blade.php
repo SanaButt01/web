@@ -13,24 +13,22 @@
             transition: margin-left 0.3s;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
 
-            /* Adjust table for smaller screens */
-            .table-responsive {
-                overflow-x: auto;
+            .side-panel.hidden + .main-content {
+                margin-left: 0;
             }
 
             .toggle-btn-navbar {
                 margin-bottom: 15px;
             }
 
-            .side-panel.hidden + .main-content {
-                margin-left: 0;
+            .table-responsive {
+                overflow-x: auto;
             }
         }
 
@@ -38,8 +36,32 @@
             .main-content {
                 margin-left: 250px; /* Width of the side panel */
             }
+        }
 
-        } 
+        /* Layout adjustments for toggle, add button, and filter */
+        .toggle-btn-row, .add-btn-row {
+            margin-bottom: 15px;
+        }
+
+        /* Center the heading */
+        .heading-row {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Align the action buttons in the table */
+    
+
+        /* Custom styling for success alert */
+        .alert {
+            background-color: #F96D41;
+            color: white;
+        }
+
+        /* Ensuring responsiveness and overflow handling for table */
+        .table-responsive {
+            overflow-x: auto;
+        }
     </style>
 </head>
 <body>
@@ -47,58 +69,67 @@
 
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
-            <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <div class="row">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
-                        <h2>All Categories</h2>
-                    </div>
-                    <div class="pull-right mb-2">
-                        <a class="btn" href="{{ route('category.create') }}" style="background-color:#F96D41;color:white;">
-                            <i class="fas fa-plus"></i> Add New Category
-                        </a>
-                    </div>
-                </div>
+            
+            <!-- Row for Toggle Button -->
+            <div class="toggle-btn-row">
+                <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
 
+            <!-- Row for Heading -->
+            <div class="heading-row">
+                <h2>All Categories</h2>
+            </div>
+
+            <!-- Row for Add New Category Button -->
+            <div class="add-btn-row">
+                <a class="btn" href="{{ route('category.create') }}" style="background-color:#F96D41;color:white;">
+                    <i class="fas fa-plus"></i> Add New Category
+                </a>
+            </div>
+
+            <!-- Success message -->
             @if ($message = Session::get('success'))
                 <div class="alert">
                     <p>{{ $message }}</p>
                 </div>
             @endif
 
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <tr>
-                        <th>S.No</th>
-                        <th>Type</th>
-                        <th>Image</th>
-                        <th width="280px">Action</th>
-                    </tr>
-                    @foreach ($categories as $category)
-                    <tr>
-                        <td>{{ $category->category_id }}</td>
-                        <td>{{ $category->type }}</td>
-                        <td><img src="{{ asset('storage/'.$category->icon) }}" style="height: 50px; width: 50px"></td>
-                        <td>
-                            <form action="{{ route('category.destroy', $category->category_id) }}" method="POST">
-                                <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('category.edit', $category->category_id) }}'">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger action-btn">
-                                    <i class="fas fa-trash"></i> Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
+            <!-- Table for displaying categories -->
+            @if($categories->isEmpty())
+                <p>No categories found.</p>
+            @else
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>S.No</th>
+                            <th>Type</th>
+                            <th>Image</th>
+                            <th width="280px">Action</th>
+                        </tr>
+                        @foreach ($categories as $category)
+                        <tr>
+                            <td>{{ $category->category_id }}</td>
+                            <td>{{ $category->type }}</td>
+                            <td><img src="{{ asset('storage/'.$category->icon) }}" style="height: 50px; width: 50px"></td>
+                            <td>
+                                <form action="{{ route('category.destroy', $category->category_id) }}" method="POST">
+                                    <button type="button" class="btn btn-primary action-btn" onclick="window.location.href='{{ route('category.edit', $category->category_id) }}'">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger action-btn">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                </div>
+            @endif
         </div>
     </div>
 </body>
@@ -108,7 +139,6 @@
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');
         var mainContent = document.getElementById('main-content');
-        var toggleBtn = document.getElementById('toggle-btn');
         
         if (panel.classList.contains('hidden')) {
             panel.classList.remove('hidden');

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>All Contents</title>
     <link rel="icon" href="{{ asset('images/log.jpeg') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -39,11 +39,26 @@
             .main-content {
                 margin-left: 250px; /* Width of the side panel */
             }
+        }
 
-           
+        /* Custom styling for success alert */
+        .alert {
+            background-color: #F96D41;
+            color: white;
         }
 
        
+
+        /* Adjust the spacing of the button rows and headings */
+        .toggle-btn-row, .add-btn-row {
+            margin-bottom: 15px;
+        }
+
+        /* Center the heading */
+        .heading-row {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -51,29 +66,34 @@
 
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
-            <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
-                <i class="fas fa-bars"></i>
-            </button>
 
-            <div class="row"style="text-align:center">
-                <div class="col-lg-12 margin-tb">
-                    <div class="pull-left">
-                        <h2>All Contents</h2>
-                    </div>
-                    <div class="pull-right mb-2">
-                        <a class="btn" href="{{ route('admin.content.create') }}" style="background-color:#F96D41;color:white;">
-                            <i class="fas fa-plus"></i> Add New Content
-                        </a>
-                    </div>
-                </div>
+            <!-- Row for Toggle Button -->
+            <div class="toggle-btn-row">
+                <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
 
+            <!-- Row for Heading -->
+            <div class="heading-row">
+                <h2>All Contents</h2>
+            </div>
+
+            <!-- Row for Add New Content Button -->
+            <div class="add-btn-row">
+                <a class="btn" href="{{ route('admin.content.create') }}" style="background-color:#F96D41;color:white;">
+                    <i class="fas fa-plus"></i> Add New Content
+                </a>
+            </div>
+
+            <!-- Success message -->
             @if ($message = Session::get('success'))
                 <div class="alert">
                     <p>{{ $message }}</p>
                 </div>
             @endif
 
+            <!-- Content Table -->
             @if($contents->isEmpty())
                 <p>No contents found.</p>
             @else
@@ -117,7 +137,6 @@
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');
         var mainContent = document.getElementById('main-content');
-        var toggleBtn = document.getElementById('toggle-btn');
         
         if (panel.classList.contains('hidden')) {
             panel.classList.remove('hidden');
