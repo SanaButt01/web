@@ -32,19 +32,21 @@ class BookController extends Controller
         return response()->json($content);
     }
 
-    // Add this method for searching books by name
     public function searchBooks(Request $request)
     {
-        $query = $request->query('title');
+        $title = $request->query('title');
+        $categoryId = $request->query('category_id');
 
-        if (!$query) {
-            return response()->json(['error' => 'Title query is required'], 400);
+        if (!$title || !$categoryId) {
+            return response()->json(['error' => 'Title query and category ID are required'], 400);
         }
 
-        $books = Books::where('title', 'LIKE', '%' . $query . '%')->get();
+        $books = Books::where('title', 'LIKE', '%' . $title . '%')
+            ->where('category_id', $categoryId)
+            ->get();
 
         if ($books->isEmpty()) {
-            return response()->json(['message' => 'No books found'], 404);
+            return response()->json(['message' => 'No books found'], 200);
         }
 
         return response()->json($books);
