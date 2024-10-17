@@ -63,9 +63,15 @@ class BookController extends Controller
         }
 
         $book->disc = $request->input('disc');
-        $book->save();
+        
+        $result = $book->save();;
+        if ($result) {
+            return redirect(route('admin.book.index'))->with('success', 'Book has been added successfully.');
+        } else {
+            return redirect(route('admin.book.index'))->with('error', 'Book has not been added.');
+        }
 
-        return redirect()->route('admin.book.index')->with('status', 'Book has been added successfully.');
+        
     }
 
     public function edit($book_id)
@@ -109,9 +115,17 @@ class BookController extends Controller
         }
 
         $book->disc = $request->input('disc');
-        $book->save();
+        
+        $result = $book->save();;
+        if ($result) {
+            return redirect(route('admin.book.index'))->with('success', 'Book has been updated successfully.');
+        } else {
+            return redirect(route('admin.book.index'))->with('error', 'Book has not been updated.');
+        }
 
-        return redirect()->route('admin.book.index')->with('status', 'Book has been updated successfully.');
+        
+
+        
     }
 
     public function destroy($book_id)

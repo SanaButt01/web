@@ -129,3 +129,27 @@
         }
     }
 </script>
+<script>
+    // Automatically remove success alert after 1 second
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            // successAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                successAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+
+    // Automatically remove error alert after 1 second
+    setTimeout(function() {
+        var errorAlert = document.getElementById('error-alert');
+        if (errorAlert) {
+            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                errorAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+</script>
+

@@ -46,9 +46,13 @@ class CategoryController extends Controller
                 $category->icon = $path . '/' . $iconName;
             }
 
-            $category->save();
-
-            return redirect()->route('category.index')->with('status', 'Data has been inserted successfully.');
+           $result = $category->save();
+           if ($result) {
+            return redirect(route('category.index'))->with('success', 'Category has been added successfully.');
+        } else {
+            return redirect(route('category.index'))->with('error', 'category has not been added.');
+        }
+          
         }
     }
 
@@ -82,11 +86,17 @@ class CategoryController extends Controller
                 $icon->storeAs($path, $iconName, 'public');
                 $category->icon = $path . '/' . $iconName;
             }
-
-            $category->save();
-
-            return redirect()->route('category.index')->with('status', 'Data has been updated successfully.');
-        }
+            $result = $category->save();
+            if ($result) {
+             return redirect(route('category.index'))->with('success', 'Category has been updated successfully.');
+         } else {
+             return redirect(route('category.index'))->with('error', 'category has not been updated.');
+         }
+           
+         }
+            
+        
+        
     }
     public function destroy($category_id)
     {

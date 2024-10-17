@@ -44,6 +44,8 @@
         .filter-row .form-group {
             margin-right: 10px;
         }
+        /* Add fade-out transition effect */
+
 
      
     </style>
@@ -94,11 +96,18 @@
             </div>
 
             <!-- Success message if any -->
-            @if ($message = Session::get('success'))
-                <div class="alert" style="background-color:#F96D41;color:white">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+    <!-- Success message if any -->
+@if (Session::has('success'))
+    <div class="alert alert-success" id="success-alert">
+        {{ Session::get('success') }}
+    </div>
+@endif
+
+@if (Session::has('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ Session::get('error') }}
+    </div>
+@endif
 
             <!-- Table displaying the books -->
             @if($books->isEmpty())
@@ -163,3 +172,27 @@
         }
     }
 </script>
+<script>
+    // Automatically remove success alert after 1 second
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            // successAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                successAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+
+    // Automatically remove error alert after 1 second
+    setTimeout(function() {
+        var errorAlert = document.getElementById('error-alert');
+        if (errorAlert) {
+            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                errorAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+</script>
+

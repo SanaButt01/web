@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Previews for Content: {{ $content_id }}</title>
+    <title>Edit Previews for Content: <?php echo e($content_id); ?></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -42,25 +42,40 @@
 <body>
 <div class="container">
     <h2 style="text-align:center">Edit Previews </h2>
-    @if(session('error'))
+    <?php if(session('error')): ?>
         <div class="alert alert-danger">
-            {{ session('error') }}
+            <?php echo e(session('error')); ?>
+
         </div>
-    @endif
+    <?php endif; ?>
     <div id="successMessage" class="alert alert-success" style="display: none;"></div>
-    <form id="editPreviewsForm" action="{{ route('previews.update', $content_id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+    <form id="editPreviewsForm" action="<?php echo e(route('previews.update', $content_id)); ?>" method="POST" enctype="multipart/form-data">
+        <?php echo csrf_field(); ?>
+        <?php echo method_field('PUT'); ?>
 
         <div class="form-group">
             <label for="images">Upload New Images (max 3):</label>
             <input type="file" name="images[]" class="form-control" multiple>
-            @error('images')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
-            @error('images.*')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
+            <?php $__errorArgs = ['images'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <span class="text-danger"><?php echo e($message); ?></span>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+            <?php $__errorArgs = ['images.*'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <span class="text-danger"><?php echo e($message); ?></span>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Previews</button>
@@ -71,33 +86,33 @@
     <h2>Existing Images</h2>
     <div class="row">
        <!-- Existing Images Section -->
-@foreach ($previews as $preview)
+<?php $__currentLoopData = $previews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $preview): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 <div class="col-md-4">
     <div class="card mb-4">
-        <img src="{{ asset('storage/' . $preview->path) }}" class="card-img-top" alt="Image">
+        <img src="<?php echo e(asset('storage/' . $preview->path)); ?>" class="card-img-top" alt="Image">
         <div class="card-body text-center">
             <!-- Edit Button -->
             <button class="btn btn-warning btn-edit"
-                    data-content-id="{{ $content_id }}"
-                    data-preview-id="{{ $preview->preview_id }}">
+                    data-content-id="<?php echo e($content_id); ?>"
+                    data-preview-id="<?php echo e($preview->preview_id); ?>">
                 Edit
             </button>
             <!-- Delete Button -->
             <button class="btn btn-danger btn-delete"
-                    data-content-id="{{ $content_id }}"
-                    data-preview-id="{{ $preview->preview_id }}">
+                    data-content-id="<?php echo e($content_id); ?>"
+                    data-preview-id="<?php echo e($preview->preview_id); ?>">
                 Delete
             </button>
         </div>
     </div>
 </div>
-@endforeach
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
     </div>
     
     <div class="row mt-3">
                 <div class="col-md-12">
-                    <a class="btn btn-back" href="{{ route('previews.index') }}">Back</a>
+                    <a class="btn btn-back" href="<?php echo e(route('admin.content.index')); ?>">Back</a>
                 </div>
             </div>
 
@@ -112,15 +127,22 @@
                     </button>
                 </div>
                 <form id="editImageForm" method="POST" enctype="multipart/form-data">
-    @csrf
+    <?php echo csrf_field(); ?>
  
     <div class="modal-body">
         <div class="form-group">
             <label for="image_update">Upload New Image:</label>
             <input type="file" name="image_update" class="form-control">
-            @error('image_update')
-                <span class="text-danger">{{ $message }}</span>
-            @enderror
+            <?php $__errorArgs = ['image_update'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                <span class="text-danger"><?php echo e($message); ?></span>
+            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
         </div>
     </div>
     <div class="modal-footer">
@@ -159,7 +181,7 @@
                 const previewId = this.dataset.previewId;
                 const contentId = this.dataset.contentId;
                 // Set action for POST method
-                editImageForm.action = `{{ route('previews.updateImage', ['content_id' => $content_id, 'preview_id' => ':preview_id']) }}`.replace(':preview_id', previewId);
+                editImageForm.action = `<?php echo e(route('previews.updateImage', ['content_id' => $content_id, 'preview_id' => ':preview_id'])); ?>`.replace(':preview_id', previewId);
                 editImageModal.show();
             });
         });
@@ -169,11 +191,11 @@
                 const previewId = this.dataset.previewId;
                 const contentId = this.dataset.contentId;
                 if (confirm('Are you sure you want to delete this image?')) {
-                    fetch(`{{ route('previews.deleteImage', ['content_id' => $content_id, 'preview_id' => ':preview_id']) }}`.replace(':preview_id', previewId), {
+                    fetch(`<?php echo e(route('previews.deleteImage', ['content_id' => $content_id, 'preview_id' => ':preview_id'])); ?>`.replace(':preview_id', previewId), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            'X-CSRF-TOKEN': '<?php echo e(csrf_token()); ?>'
                         },
                         body: JSON.stringify({ preview_id: previewId, content_id: contentId })
                     })
@@ -193,3 +215,4 @@
 
 </body>
 </html>
+<?php /**PATH F:\web\bookscity\resources\views/admin/preview/edit.blade.php ENDPATH**/ ?>

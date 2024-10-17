@@ -69,10 +69,14 @@ class ContentController extends Controller
     // Handle file upload
  
     // Save the book
-    $content->save();
-
-    // Redirect with success message
-    return redirect(route('admin.content.index'))->with('success', 'Book has been added successfully.');
+    $result = $content->save(); // Changed to save() instead of update()
+            
+    if ($result) {
+        return redirect(route('admin.content.index'))->with('success', 'Content has been added successfully.');
+    } else {
+        return redirect(route('admin.content.index'))->with('error', 'Content has not been added.');
+    }
+   
     }
 
     /**
@@ -133,9 +137,9 @@ class ContentController extends Controller
             $result = $content->save(); // Changed to save() instead of update()
             
             if ($result) {
-                return redirect(route('admin.content.index'))->with('success', 'Data has been updated successfully.');
+                return redirect(route('admin.content.index'))->with('success', 'Content has been updated successfully.');
             } else {
-                return redirect(route('admin.content.index'))->with('error', 'Data has not been updated.');
+                return redirect(route('admin.content.index'))->with('error', 'Content has not been updated.');
             }
         }
     }

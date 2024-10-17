@@ -42,10 +42,10 @@
         }
 
         /* Custom styling for success alert */
-        .alert {
+        /* .alert {
             background-color: #F96D41;
             color: white;
-        }
+        } */
 
        
 
@@ -58,6 +58,21 @@
         .heading-row {
             text-align: center;
             margin-bottom: 20px;
+        }
+        .action-btn {
+            width: 100px; /* Set equal width */
+            height: 40px;  /* Set equal height */
+            margin: 5px;   /* Space between buttons */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            white-space: nowrap;
+            padding: 5px;
+        }
+
+        .action-btn i {
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -87,12 +102,19 @@
             </div>
 
             <!-- Success message -->
-            <?php if($message = Session::get('success')): ?>
-                <div class="alert">
-                    <p><?php echo e($message); ?></p>
-                </div>
-            <?php endif; ?>
+            <?php if(Session::has('success')): ?>
+    <div class="alert alert-success">
+        <?php echo e(Session::get('success')); ?>
 
+    </div>
+<?php endif; ?>
+
+<?php if(Session::has('error')): ?>
+    <div class="alert alert-danger">
+        <?php echo e(Session::get('error')); ?>
+
+    </div>
+<?php endif; ?>
             <!-- Content Table -->
             <?php if($contents->isEmpty()): ?>
                 <p>No contents found.</p>

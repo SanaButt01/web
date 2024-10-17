@@ -44,6 +44,8 @@
         .filter-row .form-group {
             margin-right: 10px;
         }
+        /* Add fade-out transition effect */
+
 
      
     </style>
@@ -95,11 +97,20 @@
             </div>
 
             <!-- Success message if any -->
-            <?php if($message = Session::get('success')): ?>
-                <div class="alert" style="background-color:#F96D41;color:white">
-                    <p><?php echo e($message); ?></p>
-                </div>
-            <?php endif; ?>
+    <!-- Success message if any -->
+<?php if(Session::has('success')): ?>
+    <div class="alert alert-success" id="success-alert">
+        <?php echo e(Session::get('success')); ?>
+
+    </div>
+<?php endif; ?>
+
+<?php if(Session::has('error')): ?>
+    <div class="alert alert-danger" id="error-alert">
+        <?php echo e(Session::get('error')); ?>
+
+    </div>
+<?php endif; ?>
 
             <!-- Table displaying the books -->
             <?php if($books->isEmpty()): ?>
@@ -164,4 +175,28 @@
         }
     }
 </script>
+<script>
+    // Automatically remove success alert after 1 second
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            // successAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                successAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+
+    // Automatically remove error alert after 1 second
+    setTimeout(function() {
+        var errorAlert = document.getElementById('error-alert');
+        if (errorAlert) {
+            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                errorAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+</script>
+
 <?php /**PATH F:\web\bookscity\resources\views/admin/book/index.blade.php ENDPATH**/ ?>

@@ -13,6 +13,7 @@
             transition: margin-left 0.3s;
         }
 
+
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
@@ -49,14 +50,7 @@
             margin-bottom: 20px;
         }
 
-        /* Align the action buttons in the table */
-    
-
-        /* Custom styling for success alert */
-        .alert {
-            background-color: #F96D41;
-            color: white;
-        }
+      
 
         /* Ensuring responsiveness and overflow handling for table */
         .table-responsive {
@@ -88,13 +82,20 @@
                     <i class="fas fa-plus"></i> Add New Category
                 </a>
             </div>
+             <!-- Success message if any -->
+@if (Session::has('success'))
+    <div class="alert alert-success" id="success-alert">
+        {{ Session::get('success') }}
+    </div>
+@endif
 
-            <!-- Success message -->
-            @if ($message = Session::get('success'))
-                <div class="alert">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif
+@if (Session::has('error'))
+    <div class="alert alert-danger" id="error-alert">
+        {{ Session::get('error') }}
+    </div>
+@endif
+
+
 
             <!-- Table for displaying categories -->
             @if($categories->isEmpty())
@@ -149,3 +150,27 @@
         }
     }
 </script>
+<script>
+    // Automatically remove success alert after 1 second
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            // successAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                successAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+
+    // Automatically remove error alert after 1 second
+    setTimeout(function() {
+        var errorAlert = document.getElementById('error-alert');
+        if (errorAlert) {
+            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                errorAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+</script>
+

@@ -19,7 +19,6 @@
         .card-header {
             border-radius: 10px 10px 0 0;
             background-color: transparent;
-          
             font-weight: 700;
             color: #000510;
         }
@@ -92,7 +91,6 @@
 </head>
 <body>
     
-
 <div class="container-fluid d-flex justify-content-center align-items-center min-vh-100">
     <div class="col-md-6">
         <div class="card">
@@ -102,6 +100,7 @@
                 <form method="POST" action="<?php echo e(route('admin.submit.login')); ?>">
                     <?php echo csrf_field(); ?>
 
+                    <!-- Email input field -->
                     <div class="form-group">
                         <label for="email" class="form-label"><?php echo e(__('Email Address')); ?></label>
                         <div class="input-group">
@@ -117,20 +116,14 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="email" value="<?php echo e(old('email')); ?>" required autocomplete="email" autofocus>
                         </div>
-                        <?php $__errorArgs = ['email'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="invalid-feedback" role="alert">
-                            <strong><?php echo e($message); ?></strong>
-                        </span>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
+
+                        <!-- Display error message for email -->
+                        <?php if($errors->has('email')): ?>
+                            <span class="text-danger"><?php echo e($errors->first('email')); ?></span>
+                        <?php endif; ?>
                     </div>
 
+                    <!-- Password input field -->
                     <div class="form-group">
                         <label for="password" class="form-label"><?php echo e(__('Password')); ?></label>
                         <div class="input-group">
@@ -146,24 +139,12 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" name="password" required autocomplete="current-password">
                         </div>
-                        <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="invalid-feedback" role="alert">
-                            <strong><?php echo e($message); ?></strong>
-                        </span>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
-                    </div>
-<!-- 
-                    <a class="btn btn-link" href="<?php echo e(route('admin.register')); ?>">
-                        <?php echo e(__('Forgot Your Password?')); ?>
 
-                    </a> -->
+                        <!-- Display error message for password -->
+                        <?php if($errors->has('password')): ?>
+                            <span class="text-danger"><?php echo e($errors->first('password')); ?></span>
+                        <?php endif; ?>
+                    </div>
 
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block"><?php echo e(__('Login')); ?></button>
@@ -173,7 +154,6 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
-
 </body>
 </html>
 <?php /**PATH F:\web\bookscity\resources\views/admin/auth/login.blade.php ENDPATH**/ ?>

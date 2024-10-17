@@ -1,7 +1,7 @@
 /* public/css/styles.css */
 .main-content {
     margin-left: 220px;
-    margin-top: 20px;
+    margin-top: 50px;
     padding: 20px;
     transition: margin-left .3s;
     background-color: #ffffff;

@@ -21,7 +21,7 @@
     <button class="toggle-btn-navbar" id="toggle-btn" onclick="toggleSidePanel()">
         <i class="fas fa-bars"></i>
     </button>
-    <div class="row">
+    <div class="row"style="text-align:center">
             <div class="col-lg-12 mb-4">
                 <h2>Update Profile</h2>
             </div>

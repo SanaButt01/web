@@ -47,25 +47,35 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'string'],
+            'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
         ]);
-
-        $admin = Admin::where(['email' => $request->email])->first();
-
+    
+        $admin = Admin::where('email', $request->email)->first();
+    
         if (!$admin) {
-            return redirect()->back();
+            // If email is incorrect
+            return redirect()->back()
+                ->withInput($request->only('email'))
+                ->withErrors([
+                    'email' => 'The provided email is incorrect.',  // Error for incorrect email
+                ]);
         } else {
-            if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-             
-                return redirect(route('admin.dashboard'));
-              
+            // If email exists but password is incorrect
+            if (!Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                return redirect()->back()
+                    ->withInput($request->only('email'))
+                    ->withErrors([
+                        'password' => 'The provided password is incorrect.',  // Error for incorrect password
+                    ]);
             }
-            else {
-                return redirect()->back();
-            }
+    
+            // Successful login
+            return redirect()->route('admin.dashboard');
         }
     }
+    
+    
   
 
     public function logout(Request $request)
