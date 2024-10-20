@@ -139,9 +139,18 @@
                                         <button type="submit" class="btn btn-danger action-btn">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
-                                        <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='{{ route('previews.create', $content->content_id) }}'">
-                                            <i class="fas fa-plus"></i> Add Preview
-                                        </button>
+                                           <!-- Check if a preview already exists -->
+                @if ($content->previews->isEmpty())
+                    <!-- Add Preview Button if no previews exist -->
+                    <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='{{ route('previews.create', $content->content_id) }}'">
+                        <i class="fas fa-plus"></i> Add Preview
+                    </button>
+                @else
+                    <!-- Show No Action button if preview exists -->
+                    <button type="button" class="btn btn-secondary action-btn" disabled>
+                        <i class="fas fa-ban"></i> No Action
+                    </button>
+                @endif
                                     </form>
                                 </td>
                             </tr>

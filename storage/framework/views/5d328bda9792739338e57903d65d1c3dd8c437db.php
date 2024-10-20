@@ -101,20 +101,21 @@
                 </a>
             </div>
 
-            <!-- Success message -->
-            <?php if(Session::has('success')): ?>
-    <div class="alert alert-success">
+         <!-- Success message if any -->
+<?php if(Session::has('success')): ?>
+    <div class="alert alert-success" id="success-alert">
         <?php echo e(Session::get('success')); ?>
 
     </div>
 <?php endif; ?>
 
 <?php if(Session::has('error')): ?>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" id="error-alert">
         <?php echo e(Session::get('error')); ?>
 
     </div>
 <?php endif; ?>
+
             <!-- Content Table -->
             <?php if($contents->isEmpty()): ?>
                 <p>No contents found.</p>
@@ -140,9 +141,18 @@
                                         <button type="submit" class="btn btn-danger action-btn">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
-                                        <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='<?php echo e(route('previews.create', $content->content_id)); ?>'">
-                                            <i class="fas fa-plus"></i> Add Preview
-                                        </button>
+                                           <!-- Check if a preview already exists -->
+                <?php if($content->previews->isEmpty()): ?>
+                    <!-- Add Preview Button if no previews exist -->
+                    <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='<?php echo e(route('previews.create', $content->content_id)); ?>'">
+                        <i class="fas fa-plus"></i> Add Preview
+                    </button>
+                <?php else: ?>
+                    <!-- Show No Action button if preview exists -->
+                    <button type="button" class="btn btn-secondary action-btn" disabled>
+                        <i class="fas fa-ban"></i> No Action
+                    </button>
+                <?php endif; ?>
                                     </form>
                                 </td>
                             </tr>
@@ -169,4 +179,28 @@
         }
     }
 </script>
+<script>
+    // Automatically remove success alert after 1 second
+    setTimeout(function() {
+        var successAlert = document.getElementById('success-alert');
+        if (successAlert) {
+            // successAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                successAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+
+    // Automatically remove error alert after 1 second
+    setTimeout(function() {
+        var errorAlert = document.getElementById('error-alert');
+        if (errorAlert) {
+            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            setTimeout(function() {
+                errorAlert.style.display = 'none';  // Hide the element after fade-out
+            }, 500);  // Time for fade-out effect
+        }
+    }, 1000);  // Time before hiding the alert (1 second)
+</script>
+
 <?php /**PATH F:\web\bookscity\resources\views/admin/content/index.blade.php ENDPATH**/ ?>
