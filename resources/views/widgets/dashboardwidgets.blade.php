@@ -240,7 +240,7 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
-                                                    <td><img src="{{ $user->icon_url }}" alt="User Icon"></td>
+                                                    <td><img src="{{ asset('storage/' . $user->icon) }}" style="height: 50px; width: 50px"></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
