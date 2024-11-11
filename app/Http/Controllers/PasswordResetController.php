@@ -29,7 +29,7 @@ class PasswordResetController extends Controller
         // Send email
         Mail::raw("Your password reset code is: $code", function($message) use ($request) {
             $message->to($request->email)
-                    ->subject('Password Reset Code | Bookscity');
+                    ->subject('Password Reset Code | BooksCity');
         });
     
         return response()->json(['message' => 'Reset code sent to your email.'], 200);
@@ -87,9 +87,9 @@ class PasswordResetController extends Controller
         // Delete the reset entry after successful reset
         $passwordReset->delete();
 
-        Mail::raw("Your Bookscity Password has been reset. If you didn't do this, contact administration.", function($message) use ($request) {
+        Mail::raw("Your BooksCity Password has been reset. If you didn't do this, contact administration.", function($message) use ($request) {
             $message->to($request->email)
-                    ->subject('Password Reset | Bookscity');
+                    ->subject('Password Reset | BooksCity');
         });
     
         return response()->json(['message' => 'Password has been successfully reset.'], 200);
