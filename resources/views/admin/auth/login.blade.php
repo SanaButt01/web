@@ -74,13 +74,14 @@
         }
 
         .container-fluid {
-            background-image: url('images/back.jpg');
-            background-size: cover;
-            background-position: center;
-            padding-top: 50px;
-            padding-bottom: 50px;
-            background-color: rgba(249, 249, 249, 0.8);
-        }
+    background-image: url('{{ asset('images/back.jpg') }}');
+    background-size: cover;
+    background-position: center;
+    /* background-color: #f9f9f9; Fallback background color */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
 
         @media (max-width: 768px) {
             .col-md-6 {

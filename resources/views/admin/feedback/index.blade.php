@@ -50,12 +50,12 @@
                     </div>
                 </div>
             </div>
-          
+<!--           
             @if ($message = Session::get('success'))
                 <div class="alert" style="background-color:#F96D41;color:white">
                     <p>{{ $message }}</p>
                 </div>
-            @endif
+            @endif -->
             <div class="table-responsive">
            
             <table class="table table-bordered">

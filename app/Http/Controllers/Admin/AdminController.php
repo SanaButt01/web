@@ -22,11 +22,17 @@ class AdminController extends Controller
     $admin = Admin::find(auth()->user()->id);
     return view('admin.index', compact('admin'));
 }
-    public function dashboard()
+public function dashboard()
 {
-    $admin = Admin::find(auth()->user()->id);
-    return view('admin.dashboard', compact('admin'));
+    if (!auth()->check()) {
+        return redirect()->route('admin.login');
+    }
+
+    return view('admin.dashboard', [
+        'admin' => Admin::find(auth()->user()->id)
+    ]);
 }
+
 
 
     public function edit(Admin $admin)
@@ -41,7 +47,14 @@ class AdminController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:8', // Allow password to be nullable but must have a minimum length if provided
+            'password' => [
+                'required', // Password is mandatory
+                'string',
+                'min:8',
+                'max:8',
+                'regex:/^[^\s]{8,8}$/', // Disallow only spaces, no spaces at start or end
+            ],
+     // Allow password to be nullable but must have a minimum length if provided
         ]);
     
         // Find the admin record

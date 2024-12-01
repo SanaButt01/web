@@ -15,7 +15,12 @@ class PasswordResetController extends Controller
     public function sendResetCode(Request $request)
     {
         $request->validate(['email' => 'required|email']);
-    
+
+     $user = User::where('email', $request->email)->first();
+    if (!$user) {
+        return response()->json(['message' => 'Email does not exist in our records.'], 400);
+    }
+  
         // Generate six-digit code and authentication token
         $code = rand(100000, 999999);
         $authToken = Str::random(64);
