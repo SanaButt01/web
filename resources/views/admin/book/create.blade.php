@@ -127,7 +127,7 @@
 
 </body>
 </html>
-<script>
+<!-- <script>
     function toggleSidePanel() {
         var panel = document.getElementById('side-panel');
         var mainContent = document.getElementById('main-content');
@@ -143,4 +143,4 @@
             toggleBtn.classList.add('hidden');
         }
     }
-</script>
+</script> -->

@@ -72,10 +72,7 @@
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Dots icon for minimized screens -->
-            <button class="dots-icon" id="dots-btn" onclick="toggleNavbarContent()">
-                <i class="fas fa-ellipsis-h"></i>
-            </button>
+          
 
             <!-- Brand -->
             <a class="h4 mb-0 text-uppercase d-none d-lg-inline-block custom-margin-left" href="{{ route('admin.dashboard') }}">
@@ -142,10 +139,7 @@
             }
         }
 
-        function toggleNavbarContent() {
-            var navbarContent = document.querySelector('.navbar-content');
-            navbarContent.classList.toggle('show');
-        }
+       
     </script>
 </body>
 </html>
