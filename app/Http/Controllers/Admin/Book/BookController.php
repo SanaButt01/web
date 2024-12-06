@@ -15,7 +15,7 @@ class BookController extends Controller
 {
     public function index(Request $request)
     {
-        $admin = auth()->user(); // Assuming the authenticated user is the admin
+        $admin = auth()->user(); 
         $categories = Category::all();
         $category_id = $request->input('category_id');
 
@@ -146,7 +146,7 @@ class BookController extends Controller
                 $content->delete();
             }
     
-            // Now delete the book
+            
             $result = $book->delete();
     
             if ($result) {

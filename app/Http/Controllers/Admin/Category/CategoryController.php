@@ -121,7 +121,7 @@ class CategoryController extends Controller
                 $book->delete();
             }
     
-            // Delete the category
+           
             $result = $category->delete();
     
             if ($result) {

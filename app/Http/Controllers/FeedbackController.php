@@ -9,7 +9,7 @@ class FeedbackController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate the request
+      
         $validatedData = $request->validate([
             'message' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -25,10 +25,10 @@ class FeedbackController extends Controller
     }
     public function index(Request $request)
     {
-        // Fetch all feedbacks
+       
         $feedbacks = Feedback::all();
 
-        // Return the feedbacks as a JSON response
+    
         return response()->json($feedbacks);
     }
 }

@@ -70,19 +70,19 @@
 
     <h2>Existing Images</h2>
     <div class="row">
-       <!-- Existing Images Section -->
+       
 @foreach ($previews as $preview)
 <div class="col-md-4">
     <div class="card mb-4">
         <img src="{{ asset('storage/' . $preview->path) }}" class="card-img-top" alt="Image">
         <div class="card-body text-center">
-            <!-- Edit Button -->
+            
             <button class="btn btn-warning btn-edit"
                     data-content-id="{{ $content_id }}"
                     data-preview-id="{{ $preview->preview_id }}">
                 Edit
             </button>
-            <!-- Delete Button -->
+           
             <button class="btn btn-danger btn-delete"
                     data-content-id="{{ $content_id }}"
                     data-preview-id="{{ $preview->preview_id }}">
@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-    <!-- Edit Image Modal -->
+    
     <div class="modal fade" id="editImageModal" tabindex="-1" role="dialog" aria-labelledby="editImageModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -135,9 +135,9 @@
     </div>
 </div>
 
-<!-- jQuery -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap JS -->
+
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -146,7 +146,7 @@
         const editImageForm = document.getElementById('editImageForm');
         const editImageModal = new bootstrap.Modal(document.getElementById('editImageModal'));
 
-        // Check for success message and display if present
+       
         const urlParams = new URLSearchParams(window.location.search);
         const successMessage = urlParams.get('success');
         if (successMessage) {
@@ -158,7 +158,7 @@
             button.addEventListener('click', function () {
                 const previewId = this.dataset.previewId;
                 const contentId = this.dataset.contentId;
-                // Set action for POST method
+                
                 editImageForm.action = `{{ route('previews.updateImage', ['content_id' => $content_id, 'preview_id' => ':preview_id']) }}`.replace(':preview_id', previewId);
                 editImageModal.show();
             });

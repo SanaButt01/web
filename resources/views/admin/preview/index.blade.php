@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
      
-        /* Responsive Image Row */
+       
         .image-row {
             display: flex;
             flex-wrap: wrap;
@@ -23,14 +23,14 @@
             object-fit: cover;
         }
 
-        /* Responsive adjustments */
+       
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
 
-            /* Adjust table for smaller screens */
+           
             .table-responsive {
                 overflow-x: auto;
             }
@@ -40,7 +40,7 @@
 
         @media (min-width: 769px) {
             .main-content {
-                margin-left: 250px; /* Width of the side panel */
+                margin-left: 250px; 
             }
 
           
@@ -130,26 +130,26 @@
     }
 </script>
 <script>
-    // Automatically remove success alert after 1 second
+   
     setTimeout(function() {
         var successAlert = document.getElementById('success-alert');
         if (successAlert) {
-            // successAlert.classList.add('fade-out');  // Add fade-out class
+           
             setTimeout(function() {
-                successAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                successAlert.style.display = 'none';  
+            }, 500);  
         }
-    }, 1000);  // Time before hiding the alert (1 second)
+    }, 1000); 
 
-    // Automatically remove error alert after 1 second
+    
     setTimeout(function() {
         var errorAlert = document.getElementById('error-alert');
         if (errorAlert) {
-            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            
             setTimeout(function() {
-                errorAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                errorAlert.style.display = 'none';  
+            }, 500);  
         }
-    }, 1000);  // Time before hiding the alert (1 second)
+    }, 1000);  
 </script>
 

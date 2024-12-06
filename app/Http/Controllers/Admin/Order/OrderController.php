@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        // return response()->json($request->toArray());
+       
         $orders = Order::latest()->get();
         return view('admin.order.index', compact('orders'));
     }

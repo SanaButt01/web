@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
      
-        /* Responsive adjustments */
+        
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
 
-            /* Adjust table for smaller screens */
+            
             .table-responsive {
                 overflow-x: auto;
             }
@@ -27,7 +27,7 @@
 
         @media (min-width: 769px) {
             .main-content {
-                margin-left: 250px; /* Width of the side panel */
+                margin-left: 250px; 
             }
         }
 

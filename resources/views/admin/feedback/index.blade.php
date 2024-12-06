@@ -11,14 +11,14 @@
    
     <style>
       
-        /* Responsive adjustments */
+        
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
 
-            /* Adjust table for smaller screens */
+           
             .table-responsive {
                 overflow-x: auto;
             }
@@ -27,7 +27,7 @@
 
         @media (min-width: 769px) {
             .main-content {
-                margin-left: 250px; /* Width of the side panel */
+                margin-left: 250px;
             }
 
         }
@@ -50,12 +50,7 @@
                     </div>
                 </div>
             </div>
-<!--           
-            @if ($message = Session::get('success'))
-                <div class="alert" style="background-color:#F96D41;color:white">
-                    <p>{{ $message }}</p>
-                </div>
-            @endif -->
+
             <div class="table-responsive">
            
             <table class="table table-bordered">

@@ -10,9 +10,9 @@ class Content extends Model
     use HasFactory;
 
     protected $table = "contents";
-    protected $primaryKey = "content_id"; // Corrected attribute name
+    protected $primaryKey = "content_id"; 
     protected $fillable = [
-        'path', 'description','book_id'  // Add other columns as needed
+        'path', 'description','book_id' 
     ];
     public function book()
     {

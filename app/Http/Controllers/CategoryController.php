@@ -21,5 +21,5 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-    // Add other methods as needed, such as store, update, delete, etc.
+
 }

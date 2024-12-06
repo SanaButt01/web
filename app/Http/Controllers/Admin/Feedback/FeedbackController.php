@@ -12,7 +12,7 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        // return response()->json($request->toArray());
+        
         $feedbacks = Feedback::latest()->get();
         return view('admin.feedback.index', compact('feedbacks'));
     }

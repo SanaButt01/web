@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
-        /* Ensure the main content does not overlap with the side panel */
+        
         .main-content {
             transition: margin-left 0.3s;
         }
 
-        /* Responsive adjustments */
+        
         @media (max-width: 768px) {
             .main-content {
                 margin-left: 0;
                 padding: 0 10px;
             }
 
-            /* Adjust table for smaller screens */
+            
             .table-responsive {
                 overflow-x: auto;
             }
@@ -37,32 +37,28 @@
 
         @media (min-width: 769px) {
             .main-content {
-                margin-left: 250px; /* Width of the side panel */
+                margin-left: 250px; 
             }
         }
 
-        /* Custom styling for success alert */
-        /* .alert {
-            background-color: #F96D41;
-            color: white;
-        } */
+        
 
        
 
-        /* Adjust the spacing of the button rows and headings */
+        
         .toggle-btn-row, .add-btn-row {
             margin-bottom: 15px;
         }
 
-        /* Center the heading */
+        
         .heading-row {
             text-align: center;
             margin-bottom: 20px;
         }
         .action-btn {
-            width: 100px; /* Set equal width */
-            height: 40px;  /* Set equal height */
-            margin: 5px;   /* Space between buttons */
+            width: 100px; 
+            height: 40px; 
+            margin: 5px;  
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -82,19 +78,19 @@
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
 
-            <!-- Row for Toggle Button -->
+         
             <div class="toggle-btn-row">
                 <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
 
-            <!-- Row for Heading -->
+           
             <div class="heading-row">
                 <h2>All Contents</h2>
             </div>
 
-            <!-- Row for Add New Content Button -->
+           
             <div class="add-btn-row">
                 <a class="btn" href="{{ route('admin.content.create') }}" style="background-color:#F96D41;color:white;">
                     <i class="fas fa-plus"></i> Add New Content
@@ -114,7 +110,6 @@
     </div>
 @endif
 
-            <!-- Content Table -->
             @if($contents->isEmpty())
                 <p>No contents found.</p>
             @else
@@ -139,14 +134,14 @@
                                         <button type="submit" class="btn btn-danger action-btn">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
-                                           <!-- Check if a preview already exists -->
+                                         
                 @if ($content->previews->isEmpty())
-                    <!-- Add Preview Button if no previews exist -->
+                   
                     <button type="button" class="btn btn-secondary action-btn" onclick="window.location.href='{{ route('previews.create', $content->content_id) }}'">
                         <i class="fas fa-plus"></i> Add Preview
                     </button>
                 @else
-                    <!-- Show No Action button if preview exists -->
+                   
                     <button type="button" class="btn btn-secondary action-btn" disabled>
                         <i class="fas fa-ban"></i> No Action
                     </button>
@@ -178,26 +173,26 @@
     }
 </script>
 <script>
-    // Automatically remove success alert after 1 second
+    
     setTimeout(function() {
         var successAlert = document.getElementById('success-alert');
         if (successAlert) {
-            // successAlert.classList.add('fade-out');  // Add fade-out class
+           
             setTimeout(function() {
-                successAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                successAlert.style.display = 'none';  
+            }, 500);  
         }
-    }, 1000);  // Time before hiding the alert (1 second)
+    }, 1000);  
 
-    // Automatically remove error alert after 1 second
+    
     setTimeout(function() {
         var errorAlert = document.getElementById('error-alert');
         if (errorAlert) {
-            // errorAlert.classList.add('fade-out');  // Add fade-out class
+           
             setTimeout(function() {
-                errorAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                errorAlert.style.display = 'none'; 
+            }, 500); 
         }
-    }, 1000);  // Time before hiding the alert (1 second)
+    }, 1000); 
 </script>
 

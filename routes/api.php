@@ -63,3 +63,4 @@ Route::prefix("password-reset")->group(function () {
 });
 
 Route::post("/update-profile", [UserController::class, "updateProfile"]);
+

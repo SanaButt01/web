@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> <!-- Link to the external stylesheet -->
     <style>
-        /* Ensure the main content does not overlap with the side panel */
+      
         .main-content {
             transition: margin-left 0.3s;
         }
@@ -35,16 +35,16 @@
 
         @media (min-width: 769px) {
             .main-content {
-                margin-left: 250px; /* Width of the side panel */
+                margin-left: 250px; 
             }
         }
 
-        /* Layout adjustments for toggle, add button, and filter */
+        
         .toggle-btn-row, .add-btn-row {
             margin-bottom: 15px;
         }
 
-        /* Center the heading */
+       
         .heading-row {
             text-align: center;
             margin-bottom: 20px;
@@ -52,7 +52,7 @@
 
       
 
-        /* Ensuring responsiveness and overflow handling for table */
+        
         .table-responsive {
             overflow-x: auto;
         }
@@ -64,19 +64,19 @@
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
             
-            <!-- Row for Toggle Button -->
+           
             <div class="toggle-btn-row">
                 <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
 
-            <!-- Row for Heading -->
+          
             <div class="heading-row">
                 <h2>All Categories</h2>
             </div>
 
-            <!-- Row for Add New Category Button -->
+            
             <div class="add-btn-row">
                 <a class="btn" href="{{ route('category.create') }}" style="background-color:#F96D41;color:white;">
                     <i class="fas fa-plus"></i> Add New Category
@@ -97,7 +97,7 @@
 
 
 
-            <!-- Table for displaying categories -->
+            
             @if($categories->isEmpty())
                 <p>No categories found.</p>
             @else
@@ -151,25 +151,24 @@
     }
 </script>
 <script>
-    // Automatically remove success alert after 1 second
+   
     setTimeout(function() {
         var successAlert = document.getElementById('success-alert');
         if (successAlert) {
-            // successAlert.classList.add('fade-out');  // Add fade-out class
+           
             setTimeout(function() {
-                successAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                successAlert.style.display = 'none';  
+            }, 500); 
         }
-    }, 1000);  // Time before hiding the alert (1 second)
-
-    // Automatically remove error alert after 1 second
+    }, 1000);  
+    
     setTimeout(function() {
         var errorAlert = document.getElementById('error-alert');
         if (errorAlert) {
-            // errorAlert.classList.add('fade-out');  // Add fade-out class
+           
             setTimeout(function() {
-                errorAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                errorAlert.style.display = 'none';  
+            }, 500); 
         }
     }, 1000);  // Time before hiding the alert (1 second)
 </script>

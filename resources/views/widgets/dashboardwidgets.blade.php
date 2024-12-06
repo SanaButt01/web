@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Main Stylesheet -->
+   
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <!-- Additional Stylesheets -->
+   
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chartist.css') }}">
 
-    <!-- Scripts -->
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -116,14 +116,14 @@
             border-radius: 50%;
         }
         .icon-shape {
-    font-size: 20px; /* Adjust size as needed */
+    font-size: 20px; 
     margin-right: 50px;
-    color: #333; /* Adjust color as needed */
+    color: #333; 
 }
 .icon-book {
-    font-size: 20px; /* Adjust size as needed */
+    font-size: 20px; 
     margin-right: 140px;
-    color: #333; /* Adjust color as needed */
+    color: #333;
 }
     </style>
 </head>
@@ -186,10 +186,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                    <span class="text-nowrap">Since yesterday</span>
-                                </p> -->
+                              
                             </div>
                         </div>
                     </div>
@@ -207,16 +204,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span class="text-nowrap">Since last month</span>
-                                </p> -->
+                                
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Top 5 Users Section -->
+               
                 <div class="row mt-4">
                     <div class="col-xl-12 col-lg-12">
                         <div class="card mb-4 shadow-sm">
@@ -312,7 +306,7 @@
     </div>
 </div>
 
-                    <!-- End Order Status -->
+                    
                 </div>
             </div>
         </div>

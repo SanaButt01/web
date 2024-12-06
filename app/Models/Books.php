@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Books extends Model
 {
     protected $table = "books";
-    protected $primaryKey = "book_id"; // Corrected attribute name
+    protected $primaryKey = "book_id"; 
     protected $fillable = [
-        'title', 'author', 'category_id','price'// Add other columns as needed
+        'title', 'author', 'category_id','price'
     ];
 
     public function category()

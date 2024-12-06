@@ -25,13 +25,7 @@
                 </div>
             </div>
 
-            <!-- Display Success or Error Alert -->
-            @if(session('status'))
-                <div class="alert alert-success mb-3">
-                    {{ session('status') }}
-                </div>
-            @endif
-
+           
 
             <form action="{{ route('status.update', $order->id) }}" method="POST">
                 @csrf
@@ -54,10 +48,10 @@
     <div class="form-group">
         <strong>Edit Status:</strong>
         <select name="status" class="form-control">
-            <!-- Placeholder option to prompt user to select a status -->
+           
             <option value="" disabled selected>Select Status</option>
             
-            <!-- Option to select Delivered -->
+           
             <option value="delivered" {{ $order->status == 'delivered' ? 'selected' : '' }}>delivered</option>
         </select>
     </div>

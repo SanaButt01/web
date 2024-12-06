@@ -36,7 +36,7 @@ class ContentController extends Controller
      * @return \Illuminate\Http\Response
   
 
-    /**
+   
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,26 +50,24 @@ class ContentController extends Controller
         'book_id' => 'required|exists:books,book_id',
         'description' => 'required',
     
-      // Ensure the file is an image and required
+    
     ]);
 
-    // Check if validation fails
+   
     if ($validator->fails()) {
-        // If validation fails, redirect back with errors and input data
+       
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
-    // If validation passes, proceed to store the book
+   
     $content = new Content();
     $content->book_id = $request->input('book_id');
    
     $content->description = $request->input('description');
    
 
-    // Handle file upload
- 
-    // Save the book
-    $result = $content->save(); // Changed to save() instead of update()
+   
+    $result = $content->save(); 
             
     if ($result) {
         return redirect(route('admin.content.index'))->with('success', 'Content has been added successfully.');
@@ -120,13 +118,13 @@ class ContentController extends Controller
             
             'description' => 'required',
            
-             // Ensure the file is an image and req
+            
         ]);
         
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $content = Content::find($content_id); // Changed variable name to $book
+            $content = Content::find($content_id); 
             $content->book_id = $request->input('book_id');
           ;
             $content->description = $request->input('description');
@@ -134,7 +132,7 @@ class ContentController extends Controller
             
           
             
-            $result = $content->save(); // Changed to save() instead of update()
+            $result = $content->save(); 
             
             if ($result) {
                 return redirect(route('admin.content.index'))->with('success', 'Content has been updated successfully.');

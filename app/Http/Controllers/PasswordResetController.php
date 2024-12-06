@@ -25,13 +25,12 @@ class PasswordResetController extends Controller
         $code = rand(100000, 999999);
         $authToken = Str::random(64);
     
-        // Save to password_resets table
+       
         PasswordReset::updateOrCreate(
             ['email' => $request->email],
             ['token' => $code, 'auth_token' => $authToken, 'created_at' => Carbon::now()]
         );
     
-        // Send email
         Mail::raw("Your password reset code is: $code", function($message) use ($request) {
             $message->to($request->email)
                     ->subject('Password Reset Code | BooksCity');
@@ -70,7 +69,7 @@ class PasswordResetController extends Controller
             'password' => 'required|confirmed'
         ]);
     
-        // Verify the auth token
+        
         $passwordReset = PasswordReset::where('email', $request->email)
                                       ->where('auth_token', $request->auth_token)
                                       ->first();
@@ -79,7 +78,7 @@ class PasswordResetController extends Controller
             return response()->json(['message' => 'Invalid reset request.'], 400);
         }
     
-        // Check if the code has expired
+   
         if (Carbon::parse($passwordReset->created_at)->addMinutes(15)->isPast()) {
             return response()->json(['message' => 'Token has expired.'], 400);
         }
@@ -89,7 +88,7 @@ class PasswordResetController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
     
-        // Delete the reset entry after successful reset
+        
         $passwordReset->delete();
 
         Mail::raw("Your BooksCity Password has been reset. If you didn't do this, contact administration.", function($message) use ($request) {

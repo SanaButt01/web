@@ -9,7 +9,7 @@ class OrderController extends Controller
 {
     public function store(Request $request)
     {
-        // Validate the request
+       
         $request->validate([
             'email' => 'required|email',
             'phone_number' => 'required|string',
@@ -30,7 +30,7 @@ class OrderController extends Controller
             'total' => $request->total,
         ]);
 
-        // Return response
+       
         return response()->json(['message' => 'Order created successfully', 'order' => $order], 201);
     }
 }

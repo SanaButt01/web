@@ -61,7 +61,7 @@ class PreviewController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
- ;8    * @return \Illuminate\Http\Response
+
      */
     public function show($id)
     {
@@ -113,10 +113,10 @@ class PreviewController extends Controller
          // Retrieve the content
          $content = Content::findOrFail($content_id);
      
-         // Retrieve all previews associated with the content
+         
          $previews = Preview::where('content_id', $content_id)->get();
      
-         // Delete each preview image and the record
+         
          foreach ($previews as $preview) {
              $path = $preview->path;
              if (Storage::disk('public')->exists($path)) {
@@ -125,7 +125,7 @@ class PreviewController extends Controller
              $preview->delete();
          }
      
-         // Optionally delete the content itself
+        
         
          return redirect()->route('previews.index')->with('success', 'Associated previews deleted successfully');
      }
@@ -138,24 +138,24 @@ class PreviewController extends Controller
   
 public function updateImage(Request $request, $content_id, $preview_id)
 {
-    // Validate request data if necessary
+    
     $request->validate([
         'image_update' => 'required|image|mimes:jpeg,png,jpg',
     ]);
 
-    // Find the preview image to update
+    
     $preview = Preview::where('content_id', $content_id)
                       ->where('preview_id', $preview_id)
                       ->first();
 
     if ($preview) {
-        // Delete old image file
+        
         Storage::disk('public')->delete($preview->path);
 
-        // Upload new image file
+        
         $path = $request->file('image_update')->store('previews', 'public');
 
-        // Update path in database
+       
         $preview->path = $path;
         $preview->save();
 

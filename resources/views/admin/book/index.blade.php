@@ -23,18 +23,18 @@
             overflow-x: auto;
         }
 
-        /* Layout adjustments for the toggle, add, heading, and filter */
+       
         .toggle-btn-row, .add-btn-row, .filter-row {
             margin-bottom: 15px;
         }
 
-        /* Center the heading */
+      
         .heading-row {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        /* Align the filter controls inline */
+        
         .filter-row .form-inline {
             display: flex;
             justify-content: flex-start;
@@ -44,8 +44,7 @@
         .filter-row .form-group {
             margin-right: 10px;
         }
-        /* Add fade-out transition effect */
-
+       
 
      
     </style>
@@ -57,26 +56,25 @@
     <div class="main-content" id="main-content">
         <div class="container" style="margin-top:40px">
             
-            <!-- Row for Toggle Button -->
+           
             <div class="toggle-btn-row">
                 <button class="toggle-btn-navbar btn btn-primary" id="toggle-btn" onclick="toggleSidePanel()">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
 
-            <!-- Row for Heading -->
+            
             <div class="heading-row">
                 <h2>All Books</h2>
             </div>
 
-            <!-- Row for Add Button -->
+            
             <div class="add-btn-row">
                 <a class="btn" href="{{ route('admin.book.create') }}" style="background-color:#F96D41;color:white;">
                     <i class="fas fa-plus"></i> Add New Book
                 </a>
             </div>
 
-            <!-- Row for Filter -->
             <div class="filter-row">
                 <form action="{{ route('admin.book.index') }}" method="GET" class="form-inline">
                     <div class="form-group">
@@ -95,8 +93,7 @@
                 </form>
             </div>
 
-            <!-- Success message if any -->
-    <!-- Success message if any -->
+        
 @if (Session::has('success'))
     <div class="alert alert-success" id="success-alert">
         {{ Session::get('success') }}
@@ -109,7 +106,7 @@
     </div>
 @endif
 
-            <!-- Table displaying the books -->
+          
             @if($books->isEmpty())
                 <p>No books found.</p>
             @else
@@ -173,26 +170,24 @@
     }
 </script>
 <script>
-    // Automatically remove success alert after 1 second
+   
     setTimeout(function() {
         var successAlert = document.getElementById('success-alert');
         if (successAlert) {
-            // successAlert.classList.add('fade-out');  // Add fade-out class
+            
             setTimeout(function() {
                 successAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+            }, 500); 
         }
-    }, 1000);  // Time before hiding the alert (1 second)
-
-    // Automatically remove error alert after 1 second
+    }, 1000);  
     setTimeout(function() {
         var errorAlert = document.getElementById('error-alert');
         if (errorAlert) {
-            // errorAlert.classList.add('fade-out');  // Add fade-out class
+            
             setTimeout(function() {
-                errorAlert.style.display = 'none';  // Hide the element after fade-out
-            }, 500);  // Time for fade-out effect
+                errorAlert.style.display = 'none';  
+            }, 500);  
         }
-    }, 1000);  // Time before hiding the alert (1 second)
+    }, 1000);  
 </script>
 

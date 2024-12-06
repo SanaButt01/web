@@ -34,14 +34,14 @@ class BookController extends Controller
 
   public function searchBooks(Request $request)
 {
-    $title = $request->query('title');  // Get the title from query params
+    $title = $request->query('title');
 
-    // Check if the title is provided
+
     if (!$title) {
         return response()->json(['error' => 'Title query is required'], 400);
     }
 
-    // Perform the search based only on the title
+   
     $books = Books::where('title', 'LIKE', '%' . $title . '%')->get();
 
     // Check if any books are found
@@ -49,7 +49,7 @@ class BookController extends Controller
         return response()->json(['message' => 'No books found'], 200);
     }
 
-    // Return the matching books
+   
     return response()->json($books);
 }
 }

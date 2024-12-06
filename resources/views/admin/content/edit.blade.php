@@ -24,14 +24,7 @@
                 </div>
             </div>
 
-            <!-- Display Success or Error Alert -->
-            <!-- @if(session('status'))
-                <div class="alert alert-success mb-3">
-                    {{ session('status') }}
-                </div>
-            @endif
-
-            -->
+           
 
             <form action="{{ route('content.update', $content->content_id) }}" method="POST" enctype="multipart/form-data">
                 @csrf

@@ -10,17 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
+   
     use AuthenticatesUsers;
 
     /**
@@ -54,19 +44,19 @@ class LoginController extends Controller
         $admin = Admin::where('email', $request->email)->first();
     
         if (!$admin) {
-            // If email is incorrect
+          
             return redirect()->back()
                 ->withInput($request->only('email'))
                 ->withErrors([
-                    'email' => 'The provided email is incorrect.',  // Error for incorrect email
+                    'email' => 'The provided email is incorrect.', 
                 ]);
         } else {
-            // If email exists but password is incorrect
+            
             if (!Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
                 return redirect()->back()
                     ->withInput($request->only('email'))
                     ->withErrors([
-                        'password' => 'The provided password is incorrect.',  // Error for incorrect password
+                        'password' => 'The provided password is incorrect.',  
                     ]);
             }
     
